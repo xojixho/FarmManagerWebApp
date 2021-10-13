@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @author camil
  */
 @RestController
-@RequestMapping("/greet")
+@RequestMapping("/saludar")
 public class HelloWorldController {
     
-    @GetMapping("/hello")
+    @GetMapping("/hola")
     public String saludar(){
-        return "<h1>Hello World<h1>";
+        return "<h1>Hola Muchachos<h1>";
     }   
 }
