@@ -1,0 +1,23 @@
+129.151.121.31
+
+$ sudo firewall-cmd --zone=public --permanent --add-port=80/tcp
+
+$ sudo firewall-cmd --reload
+
+error sobre puerto 8080 --> debe escuchar en el puerto 80 ¿?
+----ejemplo --->  java  -Dserver.port=8081 -jar <archivo.jar>
+$sudo java -jar -Dserver.port=80 -Dspring.profiles.active=prod archivo.jar
+
+
+si se realizan cambios en el codigo local
+->realizar el push local
+->realizar el pull remoto
+->mvn clean compile (* opcional)
+->mvn clean package -DskiptTest
+-> sudo java -jar -Dserver.port=80 -Dspring.profiles.active=prod archivo.jar
+
+
+habilitar puerto 8080
+
+sudo firewall-cmd --zone=public --add-port=8080/tcp --permanent
+sudo firewall-cmd --reload

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+    <title>AppFincas</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body class="grid-container">
+    <header class="header">
+        <h1>Administracion Fincas</h1>
+    </header>
+    <nav class="navbar">
+        <a id="usuario" href=""><img src="img/user.png" alt="">usuario</a>
+        <a id="log" href=""></a>
+    </nav>
+    <aside class="sidebar">
+        <a href="#info" onclick="mostrarFincas()"><img src="img/farmer.png" alt="ir a fincas"><strong>Fincas</strong></a> <br>
+        <a href=""><img src="img/client.png" alt="ir a clientes"> <strong>Clientes</strong></a> <br>
+        <a href=""><img src="img/chat.png" alt="ir a mensajes"> <strong>Mensajes</strong></a> <br>
+    </aside>
+    <article class="main">
+        <div id="imagen-inicial"><img src="img/imagenInicial.png" alt=""></div>
+        <!-- <h3 id="bienvenido">Bienvenido</h3> -->
+
+        <div id="info">
+            <!-- Titulo -->
+            <h2 id="titulo">Titulo</h1>
+                <!-- Mensajes de estado -->
+                <div id="mensaje"></div>
+                <br>
+                <!-- Tabla -->
+                <div id="tabla">Tabla</div>
+                <br>
+                <!-- Boton Ingresar nueva finca -->
+                <div>
+                    <button id="btnNuevo" onclick=""></button>
+                </div>
+
+        </div>
+        <br>
+        <!-- Nueva Cliente -->
+        <div id="form-nuevo" style="display: none;">
+            <fieldset style="width: min-content;">
+                <legend><strong>Nuevo Cliente</strong></legend>
+                <!-- <label>Id: <br>
+                <input type="number" id="idNuevoCliente" required></label> <br> -->
+                <label>name: <br>
+                    <input type="text" id="nameNuevoCliente" required></label> <br>
+                <label>email: <br>
+                    <input type="text" id="emailNuevoCliente" required></label> <br>
+                <label>age<br>
+                    <input type="number" id="ageNuevoCliente" required></label> <br>
+                <br><br>
+                <input type="submit" id="GuardarNuevoCliente" value="Guardar" onclick="nuevoCliente()">
+                <input type="submit" id="CancelarNuevoCliente" value="Cancelar" onclick="estadoInicialCliente()">
+            </fieldset>
+        </div>
+        <br>
+        <!-- Editar Cliente -->
+        <div id="form-editar" style="display: none;">
+            <fieldset style="width: min-content;">
+                <legend><strong>Editar Cliente</strong></legend>
+                <!-- <label>Id: <br>
+                <input type="number" id="idEditarCliente" disabled></label> <br> -->
+                <label>name: <br>
+                    <input type="text" id="nameEditarCliente" required></label> <br>
+                <label>email: <br>
+                    <input type="text" id="emailEditarCliente" required></label> <br>
+                <label>age: <br>
+                    <input type="number" id="ageEditarCliente" required></label> <br>
+                <br><br>
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCliente()">
+                <input type="submit" name="CancelarEditar" value="Cancelar" onclick="ocultarCamposEditar()">
+            </fieldset>
+        </div>
+
+        </div>
+    </article>
+    <footer class="footer">
+        <address>
+            <p>Juan Camilo Acevedo Moreno</p>
+            <p><a href="mailto:juan.acevedo1.mt@correo.usa.edu.co">juan.acevedo1.mt@correo.usa.edu.co</a></p>
+            <p>MisionTic 2021</p>
+        </address>
+    </footer>
+</body>
+
+</html>
