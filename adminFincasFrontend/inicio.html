@@ -23,7 +23,12 @@
     <aside class="sidebar">
         <a href="#info" onclick="mostrarFincas()"><img src="img/farmer.png"
                 alt="ir a fincas"><strong>Fincas</strong></a> <br>
-        <a href=""><img src="img/client.png" alt="ir a clientes"> <strong>Clientes</strong></a> <br>
+        <a href="#info" onclick="mostrarCategorias()"><img src="img/categories.png"
+                alt="ir a Categorias"><strong>Categorias</strong></a> <br>
+
+        <a href="#info" onclick="mostrarClientes()"><img src="img/client.png" 
+            alt="ir a clientes"> <strong>Clientes</strong></a> <br>
+
         <a href=""><img src="img/chat.png" alt="ir a mensajes"> <strong>Mensajes</strong></a> <br>
     </aside>
     <article class="main">
@@ -76,13 +81,13 @@
             <fieldset>
                 <legend><strong>Editar Finca</strong></legend>
                 <label>Id: <br>
-                <input type="number" id="idEditar" disabled></label> <br>
+                    <input type="number" id="idEditar" disabled></label> <br>
                 <label>Address: <br>
                     <input type="text" id="addressEditar" placeholder=""></label> <br>
                 <label>Extencion: <br>
                     <input type="number" id="extensionEditar" placeholder=""></label> <br>
                 <label>Category Id: <br>
-                    <input type="number" id="category_idEditar"  disabled placeholder=""></label> <br>
+                    <input type="number" id="category_idEditar" disabled placeholder=""></label> <br>
                 <label>Name: <br>
                     <input type="text" id="nameEditar" placeholder=""></label> <br>
                 <label>Description: <br>
@@ -90,6 +95,73 @@
                 <br><br>
                 <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarFinca()">
                 <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarFincas()">
+            </fieldset>
+        </div>
+
+        <!-- Nueva Categoria -->
+        <div class="datos" id="nuevaCategoria">
+            <fieldset id="formNuevaCategoria">
+                <legend><strong>Nueva Categoria</strong></legend>
+                <label>Name: <br>
+                    <input type="text" id="nameNuevaCategoria" required></label> <br>
+                <label>Description: <br>
+                    <input type="text" id="descriptionNuevaCategoria" required></label>
+                <br><br>
+                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevaCategoria()">
+                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarCategorias()">
+            </fieldset>
+        </div>
+        <br>
+        <!-- Editar Finca -->
+        <div class="datos" id="editarCategoria">
+            <fieldset>
+                <legend><strong>Editar Finca</strong></legend>
+                <label>Id: <br>
+                    <input type="number" id="idEditarCategoria" disabled></label> <br>
+                <label>Name: <br>
+                    <input type="text" id="nameEditarCategoria" required placeholder=""></label> <br>
+                <label>Description: <br>
+                    <input type="text" id="descriptionEditarCategoria" required></label>
+                <br><br>
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCategoria()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
+            </fieldset>
+        </div>
+
+
+        <!-- Nuevo Cliente -->
+        <div class="datos" id="nuevoCliente">
+            <fieldset id="formNueva">
+                <legend><strong>Nueva Cliente</strong></legend>
+                <label>Name: <br>
+                    <input type="text" id="nameNuevoCliente" required></label> <br>
+                <label>Email: <br>
+                    <input type="text" id="emailNuevoCliente" required></label> <br>
+                <label>age: <br>
+                    <input type="number" id="ageNuevoCliente" required></label> <br>
+                <label>Password: <br>
+                    <input type="password" id="passwordNuevoCliente" required></label> <br>
+                <br><br>
+                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevoCliente()">
+                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarClientes()">
+            </fieldset>
+        </div>
+        <br>
+        <!-- Editar Cliente -->
+        <div class="datos" id="editarCliente">
+            <fieldset>
+                <legend><strong>Editar Cliente</strong></legend>
+                <label>Name: <br>
+                    <input type="text" id="nameEditarCliente" required></label> <br>
+                <label>Email: <br>
+                    <input type="text" id="emailEditarCliente" required></label> <br>
+                <label>age: <br>
+                    <input type="number" id="ageEditarCliente" required></label> <br>
+                <label>Password: <br>
+                    <input type="text" id="PasswordEditarCliente" required></label> <br>
+                <br><br>
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCategoria()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
             </fieldset>
         </div>
 

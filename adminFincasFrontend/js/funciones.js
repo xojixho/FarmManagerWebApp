@@ -2,6 +2,8 @@ $(document).ready(function () {
     mostrarImagen();
 });
 
+/* Tabla Fincas  */
+
 function llenarTablaFincas(items) {
     $("#tabla").html("");
     $("#tabla").show(500);
@@ -44,7 +46,7 @@ function mostrarFincas() {
     $("#btnNuevo").show();
     $.ajax(
         {
-            url: "http://129.151.121.31:8080/api/Farm/all/",
+            url: "http://129.151.121.31/api/Farm/all/",
             type: "GET",
             dataType: "JSON",
             success: function (respuesta) {
@@ -78,7 +80,7 @@ function nuevaFinca() {
 
     if (validarNuevo()) {
         $.ajax({
-            url: "http://129.151.121.31:8080/api/Farm/save/",
+            url: "http://129.151.121.31/api/Farm/save/",
             data: JSON.stringify(data),
             type: "POST",
             contentType: "application/JSON; charset=utf-8",
@@ -113,7 +115,7 @@ function editarFinca() {
     console.log(dataPut);
     if (validarEditar()) {
         $.ajax({
-            url: "http://129.151.121.31:8080/api/Farm/update/",
+            url: "http://129.151.121.31/api/Farm/update/",
             type: "PUT",
             data: JSON.stringify(dataPut),
             contentType: "application/JSON",
@@ -139,17 +141,17 @@ function editarFinca() {
 /*  Metodo DELETE Fincas*/
 
 function borrarFinca(codigo){
-    let datos={
+    let dato={
         id:codigo
     };
 
-    let = datoBorrar = JSON.stringify(datos);
+    let datoBorrar = JSON.stringify(dato);
     $.ajax({
-        url:"http://129.151.121.31:8080/api/Farm/"+ codigo,
+        url:"http://129.151.121.31/api/Farm/"+ codigo,
         data:datoBorrar,
         type:"DELETE", 
         contentType:"application/JSON",
-        dataType: "json",
+        dataType: "JSON",
         success:function(respuesta){
             $("#mensaje").show(1000);
             $("#mensaje").html("Registro eliminado");
@@ -189,7 +191,7 @@ function formularioEditarFinca(id,i) {
     });
     $("#"+`${i}`).each(function () {
         var category_id=$(this).find("#category").html();
-        document.getElementById("category_idEditar").placeholder = category_id;
+        document.getElementById("category_idEditar").value = category_id;
     });
     $("#"+`${i}`).each(function () {
         var name=$(this).find("#name").html();
@@ -223,7 +225,7 @@ function limpiarCamposEditar() {
     $("#descriptionEditar").val("");
 }
 
-/* Validaciones */
+/* Validaciones Finca */
 
 function validarVacio(dato) {
     return dato == "";
@@ -316,3 +318,484 @@ function validarEditar() {
     return true;
 }
 
+
+/* Categorias */
+
+
+function llenarTablaCategorias(items) {
+    $("#tabla").html("");
+    $("#tabla").show(500);
+
+    var tabla = `<table id ="tablaCategoria" border='1'> 
+                <tr>    
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>description</th>
+                    <th colspan='2'>Acciones</th>
+                </tr>`;
+
+    for (var i = 0; i < items.length; i++) {
+        tabla += `<tr id=${i}>
+                <td id="id">${items[i].id}</td>
+                <td id="name">${items[i].name}</td>
+                <td id="description">${items[i].description}</td>
+                <td id="btnEditar"><button onclick='formularioEditarCategoria(${items[i].id}, ${i})'>Editar</button></td>
+                <td id="btnBorrar"><button onclick="borrarCategoria(${items[i].id})">Borrar</button></td>
+                </tr>`;
+    }
+    tabla += `</table>`;
+    $("#tabla").html(tabla);
+}
+
+/* Metodo GET Categorias*/
+
+function mostrarCategorias() {
+    $("#imagen-inicial").hide();
+    $("#info").show();
+    $("#nuevaCategoria").hide();
+    $("#editarCategoria").hide();
+    $("#titulo").html("Categorias");
+    $("#btnNuevo").attr("onclick", "formularioNuevaCategoria()");
+    $("#btnNuevo").html("Nueva Categoria");
+    $("#btnNuevo").show();
+    $.ajax(
+        {
+            url: "http://129.151.121.31/api/Category/all/",
+            type: "GET",
+            dataType: "JSON",
+            success: function (respuesta) {
+                console.log(respuesta);
+                llenarTablaCategorias(respuesta);
+            },
+            error: function (xhr, status) {
+                $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
+                $("#mensaje").hide(3000);
+            },
+            complete: function (xhr, status) {
+                $("#mensaje").html("Obteniendo listado de categorias. Status: " + status);
+                $("#mensaje").hide(3000);
+            }
+        }
+    )
+
+}
+
+/* Metodo POST Fincas*/
+
+function nuevaCategoria() {
+    formularioNuevaCategoria();
+    let data = {
+        name: $("#nameNuevaCategoria").val(),
+        description: $("#descriptionNuevaCategoria").val()
+    }
+
+    if (validarNuevaCategoria()) {
+        $.ajax({
+            url: "http://129.151.121.31/api/Category/save/",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/JSON; charset=utf-8",
+            success: function (respuesta) {
+                console.log(respuesta);
+                $("#mensaje").show(1000);
+                $("#mensaje").html("Nueva Categoria registrada");
+                $("#mensaje").hide(1000);
+                mostrarCategorias();
+                limpiarCamposNuevaCategoria();
+            },
+            error: function (xhr, status) {
+                $("#mensaje").show(1000);
+                $("#mensaje").html("Error en el registro... " + status);
+                $("#mensaje").hide(1000);
+
+            }
+        });
+    }
+}
+
+/*  Metodo DELETE Categoria*/
+
+function borrarCategoria(codigo){
+    let datos={
+        id:codigo
+    };
+
+    let = datoBorrar = JSON.stringify(datos);
+    $.ajax({
+        url:"http://129.151.121.31/api/Category/"+ codigo,
+        data:datoBorrar,
+        type:"DELETE", 
+        contentType:"application/JSON",
+        dataType: "json",
+        success:function(respuesta){
+            $("#mensaje").show(1000);
+            $("#mensaje").html("Categoria eliminada");
+            $("#mensaje").hide(1000);
+            mostrarCategorias();
+        },
+        error:function(xhr, status){
+            $("#mensajes").html("Ocurrio un problema al ejecutar la peticion: "+status);
+            $("#mensaje").hide(1000);
+        }
+    });
+}
+
+function formularioNuevaCategoria() {
+    $("#nuevaCategoria").show(500);
+    $("#nameNuevaCategoria").focus();
+    $("#tablaCategoria").hide(500);
+    $("#btnNuevo").hide(500);
+
+}
+
+/* Validaciones Categoria */
+
+// Validar formulario nuevo
+function validarNuevaCategoria() {
+    let name = $("#nameNuevaCategoria").val();
+    let description = $("#descriptionNuevaCategoria").val();
+    let error = "";
+    $("#mensaje").val("");
+
+    if (validarVacio(name)) {
+        error = "Campo name vacio <br>";
+        $("#mensaje").html(error);
+        $("#mensaje").show(1000);
+        $("#nameNueva").focus();
+        return false;
+    } else if (validarVacio(description)) {
+        error = "Campo description vacio <br>";
+        $("#mensaje").html(error);
+        $("#mensaje").show(1000);
+        $("#descriptionNueva").focus();
+        return false;
+    }
+    return true;
+}
+
+// Validar formulario editar
+function validarEditarCategoria() {
+    let name = $("#nameEditarCategoria").val();
+    let description = $("#descriptionEditar").val();
+    let errores = "";
+    $("#mensaje").val("");
+
+    if (validarVacio(name)) {
+        errores = "Campo name vacio <br>";
+        $("#mensaje").html(errores);
+        $("#mensaje").show(1000);
+        $("#nameEditarCategoria").focus();
+        return false;
+    }else if (validarVacio(description)) {
+        errores = "Campo description vacio <br>";
+        $("#mensaje").html(errores);
+        $("#mensaje").show(1000);
+        $("#descriptionEditarCategoria").focus();
+        return false;
+    }
+    return true;
+}
+
+function limpiarCamposNuevaCategoria() {
+    $("#nameNuevaCategoria").val("");
+    $("#descriptionNuevaCategoria").val("");
+}
+
+function limpiarCamposEditarCategoria() {
+    $("#nameEditarCategoria").val("");
+    $("#descriptionEditarCategoria").val("");
+}
+
+
+
+/* Clientes */
+
+function llenarTablaClientes(items) {
+    $("#tabla").html("");
+    $("#tabla").show(500);
+
+    var tabla = `<table id ="tablaCliente" border='1'> 
+                <tr>    
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Password</th>
+                    <th colspan='2'>Acciones</th>
+                </tr>`;
+
+    for (var i = 0; i < items.length; i++) {
+        tabla += `<tr id=${i}>
+                <td id="name">${items[i].name}</td>
+                <td id="age">${items[i].age}</td>
+                <td id="email">${items[i].email}</td>
+                <td id="password">${items[i].password}</td>
+                <td id="btnEditar"><button onclick='formularioEditarCliente(${items[i].id}, ${i})'>Editar</button></td>
+                <td id="btnBorrar"><button onclick="borrarCliente(${items[i].id})">Borrar</button></td>
+                </tr>`;
+    }
+    tabla += `</table>`;
+    $("#tabla").html(tabla);
+}
+
+/* Metodo GET Cliente*/
+
+function mostrarClientes() {
+    $("#imagen-inicial").hide();
+    $("#info").show();
+    $("#nuevoCliente").hide();
+    $("#editarCliente").hide();
+    $("#titulo").html("Clientes");
+    $("#btnNuevo").attr("onclick", "formularioNuevoCliente()");
+    $("#btnNuevo").html("Nuevo Cliente");
+    $("#btnNuevo").show();
+    $.ajax(
+        {
+            url: "http://129.151.121.31/api/Client/all/",
+            type: "GET",
+            dataType: "JSON",
+            success: function (respuesta) {
+                console.log(respuesta);
+                llenarTablaClientes(respuesta);
+            },
+            error: function (xhr, status) {
+                $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
+                $("#mensaje").hide(3000);
+            },
+            complete: function (xhr, status) {
+                $("#mensaje").html("Obteniendo listado de fincas. Status: " + status);
+                $("#mensaje").hide(3000);
+            }
+        }
+    )
+
+}
+
+/* Metodo POST Cliente*/
+
+function nuevoCliente() {
+    formularioNuevoCliente();
+    let data = {
+        name: $("#nameNuevoCliente").val(),
+        age: $("#ageNuevoCliente").val(),
+        email: $("#emailNuevoCliente").val(),
+        password: $("#passwordNuevoCliente").val()
+    };
+    console.log(data);
+    if (validarNuevoCliente()) {
+        $.ajax({
+            url: "http://129.151.121.31/api/Client/save/",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/JSON; charset=utf-8",
+            success: function (respuesta) {
+                console.log(respuesta);
+                $("#mensaje").show(1000);
+                $("#mensaje").html("Nuevo Cliente registrada");
+                $("#mensaje").hide(1000);
+                mostrarClientes();
+                limpiarCamposNuevoCliente();
+            },
+            error: function (xhr, status) {
+                $("#mensaje").show(1000);
+                $("#mensaje").html("Error en el registro... " + status);
+                $("#mensaje").hide(1000);
+
+            }
+        });
+    }
+}
+
+/* Metodo PUT Cliente*/
+
+function editarFinca() {
+    let dataPut = {
+        id: $("#idEditar").val(),
+        address: $("#addressEditar").val(),
+        name: $("#nameEditar").val(),
+        description: $("#descriptionEditar").val(),
+        extension: $("#extensionEditar").val()
+    };
+    console.log(dataPut);
+    if (validarEditar()) {
+        $.ajax({
+            url: "http://129.151.121.31/api/Farm/update/",
+            type: "PUT",
+            data: JSON.stringify(dataPut),
+            contentType: "application/JSON",
+            dataType: "JSON",
+            success: function (respuesta) {
+                console.log(respuesta);
+                $("#mensaje").show(500);
+                $("#mensaje").html(" finca actualizada");
+                $("#mensaje").hide(1000);
+                limpiarCamposEditar();
+                mostrarFincas();
+            },
+            error: function (xhr, status) {
+                $("#mensaje").show();
+                $("#mensaje").html("Error en la actualizacion... " + status);
+                $("#mensaje").hide(500);
+
+            }
+        });
+    }
+}
+
+/*  Metodo DELETE Cliente*/
+
+function borrarCliente(codigo){
+    let datos={
+        id:codigo
+    };
+
+    let = datoBorrar = JSON.stringify(datos);
+    $.ajax({
+        url:"http://129.151.121.31/api/Client/"+ codigo,
+        data:datoBorrar,
+        type:"DELETE", 
+        contentType:"application/JSON",
+        dataType: "json",
+        success:function(respuesta){
+            $("#mensaje").show(1000);
+            $("#mensaje").html("Registro eliminado");
+            $("#mensaje").hide(1000);
+            mostrarFincas();
+        },
+        error:function(xhr, status){
+            $("#mensajes").html("Ocurrio un problema al ejecutar la peticion: "+status);
+            $("#mensaje").hide(1000);
+        }
+    });
+}
+
+function formularioNuevoCliente() {
+    $("#nuevoCliente").show(500);
+    $("#nameNuevoCliente").focus();
+    $("#tablaCliente").hide(500);
+    $("#btnNuevo").hide(500);
+
+}
+
+function formularioEditarFinca(id,i) {
+
+    document.getElementById("idEditar").value = id;
+
+    $("#"+`${i}`).each(function () {
+        var address=$(this).find("#address").html();
+        document.getElementById("addressEditar").placeholder = address;
+    });
+    $("#"+`${i}`).each(function () {
+        var extension=$(this).find("#extension").html();
+        document.getElementById("extensionEditar").placeholder = extension;
+    });
+    $("#"+`${i}`).each(function () {
+        var category_id=$(this).find("#category").html();
+        document.getElementById("category_idEditar").value = category_id;
+    });
+    $("#"+`${i}`).each(function () {
+        var name=$(this).find("#name").html();
+        document.getElementById("nameEditar").placeholder = name;
+    });
+    $("#"+`${i}`).each(function () {
+        var description=$(this).find("#description").html();
+        document.getElementById("descriptionEditar").placeholder = description;
+    });
+
+    $("#editarFinca").show(500);
+    $("#addressEditar").focus();
+    $("#btnNuevo").hide(500);
+    $("#tabla").hide();
+
+}
+
+function limpiarCamposNuevoCliente() {
+    $("#nameNuevoCliente").val("");
+    $("#emailNuevoCliente").val("");
+    $("#ageNuevoCliete").val("");
+    $("#PasswordNuevoCliente").val("");
+}
+
+function limpiarCamposEditarCliente() {
+    $("#nameEditarCliente").val("");
+    $("#emailEditarCliente").val("");
+    $("#ageEditarCliete").val("");
+    $("#PasswordEditarCliente").val("");
+}
+
+/* Validaciones Cliente */
+
+// Validar formulario nuevo Cliente
+
+function validarNuevoCliente() {
+    let name = $("#nameNuevoCliente").val();
+    let age = $("#ageNuevoCliente").val();
+    let email = $("#emailNuevoCliente").val();
+    let password = $("#passwordNuevoCliente").val();
+    let error = "";
+    $("#mensaje").val("");
+
+    if (validarVacio(name)) {
+        error = "Campo name vacio <br>";
+        $("#mensaje").html(error);
+        $("#mensaje").show(1000);
+        $("#nameNuevoCliente").focus();
+        return false;
+    } else if (validarVacio(age)) {
+        error = "Campo age vacio <br>";
+        $("#mensaje").html(error);
+        $("#mensaje").show(1000);
+        $("#ageNuevoCliente").focus();
+        return false;
+    } else if (validarVacio(email)) {
+        error = "Campo email vacio <br>";
+        $("#mensaje").html(error);
+        $("#mensaje").show(1000);
+        $("#emailNuevoCliente").focus();
+        return false;
+    } else if (validarVacio(password)) {
+        error = "Campo password vacio <br>";
+        $("#mensaje").html(error);
+        $("#mensaje").show(1000);
+        $("#passwordNuevoCliente").focus();
+        return false;
+    } 
+    return true;
+}
+
+// Validar formulario editar
+function validarEditar() {
+    let address = $("#addressEditar").val();
+    let extension = $("#extensionEditar").val();
+    // let category_id = $("#category_idEditar").val();
+    let name = $("#nameEditar").val();
+    let description = $("#descriptionEditar").val();
+    let errores = "";
+    $("#mensaje").val("");
+
+    if (validarVacio(address)) {
+        errores = "Campo address vacio <br>";
+        $("#mensaje").html(errores);
+        $("#mensaje").show(1000);
+        $("#addressEditar").focus();
+        return false;
+    } else if (validarVacio(extension)) {
+        errores = "Campo extension vacio <br>";
+        $("#mensaje").html(errores);
+        $("#mensaje").show(1000);
+        $("#extensionEditar").focus();
+        return false;
+    } else if (validarVacio(name)) {
+        errores = "Campo name vacio <br>";
+        $("#mensaje").html(errores);
+        $("#mensaje").show(1000);
+        $("#nameEditar").focus();
+        return false;
+    }else if (validarVacio(description)) {
+        errores = "Campo description vacio <br>";
+        $("#mensaje").html(errores);
+        $("#mensaje").show(1000);
+        $("#descriptionEditar").focus();
+        return false;
+    }
+    return true;
+}

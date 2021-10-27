@@ -70,11 +70,10 @@ body {
 
 #info {
     display: none;
-    text-align: center;
 }
 
-#tablaFinca{
-    width:max-content;
+table {
+    width:100%;
 }
 
 .footer {
