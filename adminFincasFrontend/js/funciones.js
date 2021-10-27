@@ -44,7 +44,7 @@ function mostrarFincas() {
     $("#btnNuevo").show();
     $.ajax(
         {
-            url: "http://129.151.121.31/api/Farm/all/",
+            url: "http://129.151.121.31:8080/api/Farm/all/",
             type: "GET",
             dataType: "JSON",
             success: function (respuesta) {
@@ -78,7 +78,7 @@ function nuevaFinca() {
 
     if (validarNuevo()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Farm/save/",
+            url: "http://129.151.121.31:8080/api/Farm/save/",
             data: JSON.stringify(data),
             type: "POST",
             contentType: "application/JSON; charset=utf-8",
@@ -113,7 +113,7 @@ function editarFinca() {
     console.log(dataPut);
     if (validarEditar()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Farm/update/",
+            url: "http://129.151.121.31:8080/api/Farm/update/",
             type: "PUT",
             data: JSON.stringify(dataPut),
             contentType: "application/JSON",
@@ -145,7 +145,7 @@ function borrarFinca(codigo){
 
     let = datoBorrar = JSON.stringify(datos);
     $.ajax({
-        url:"http://129.151.121.31/api/Farm/"+ codigo,
+        url:"http://129.151.121.31:8080/api/Farm/"+ codigo,
         data:datoBorrar,
         type:"DELETE", 
         contentType:"application/JSON",
