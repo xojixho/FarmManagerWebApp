@@ -57,12 +57,24 @@ body {
     text-align: center;
 }
 
+.main > div {
+    display: none;
+}
+
+
+
 #imagen-inicial {
     display: none;
+    text-align: center;
 }
 
 #info {
     display: none;
+    text-align: center;
+}
+
+#tablaFinca{
+    width:max-content;
 }
 
 .footer {
@@ -74,10 +86,10 @@ body {
     display: grid;
     gap: 2px;
     grid-template: 
-        "header header header" 100px 
-        "navbar navbar navbar" 70px
-        "sidebar main main" auto
-        "footer footer footer" 100px /
-        200px auto 200px;
+        "header header" 100px 
+        "navbar navbar" 70px
+        "sidebar main" auto
+        "footer footer" 100px /
+        200px auto;
 }
 
