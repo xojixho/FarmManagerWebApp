@@ -319,10 +319,10 @@ function validarEditar() {
 }
 
 
-/* Categorias */
+/* Categoria */
 
 
-function llenarTablaCategorias(items) {
+function llenarTablaCategoria(items) {
     $("#tabla").html("");
     $("#tabla").show(500);
 
@@ -347,14 +347,14 @@ function llenarTablaCategorias(items) {
     $("#tabla").html(tabla);
 }
 
-/* Metodo GET Categorias*/
+/* Metodo GET Categoria*/
 
 function mostrarCategorias() {
     $("#imagen-inicial").hide();
     $("#info").show();
     $("#nuevaCategoria").hide();
     $("#editarCategoria").hide();
-    $("#titulo").html("Categorias");
+    $("#titulo").html("Mensaje");
     $("#btnNuevo").attr("onclick", "formularioNuevaCategoria()");
     $("#btnNuevo").html("Nueva Categoria");
     $("#btnNuevo").show();
@@ -365,14 +365,14 @@ function mostrarCategorias() {
             dataType: "JSON",
             success: function (respuesta) {
                 console.log(respuesta);
-                llenarTablaCategorias(respuesta);
+                llenarTablaCategoria(respuesta);
             },
             error: function (xhr, status) {
                 $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
                 $("#mensaje").hide(3000);
             },
             complete: function (xhr, status) {
-                $("#mensaje").html("Obteniendo listado de categorias. Status: " + status);
+                $("#mensaje").html("Obteniendo listado de Mensaje. Status: " + status);
                 $("#mensaje").hide(3000);
             }
         }
@@ -530,7 +530,7 @@ function llenarTablaClientes(items) {
                 <td id="email">${items[i].email}</td>
                 <td id="password">${items[i].password}</td>
                 <td id="btnEditar"><button onclick='formularioEditarCliente(${items[i].id}, ${i})'>Editar</button></td>
-                <td id="btnBorrar"><button onclick="borrarCliente(${items[i].id})">Borrar</button></td>
+                <td id="btnBorrar"><button onclick="borrarCliente(${items[i].idClient})">Borrar</button></td>
                 </tr>`;
     }
     tabla += `</table>`;
@@ -648,7 +648,7 @@ function borrarCliente(codigo){
         id:codigo
     };
 
-    let = datoBorrar = JSON.stringify(datos);
+    let datoBorrar = JSON.stringify(datos);
     $.ajax({
         url:"http://129.151.121.31/api/Client/"+ codigo,
         data:datoBorrar,
@@ -798,4 +798,173 @@ function validarEditar() {
         return false;
     }
     return true;
+}
+
+/* Mensajes */
+
+
+
+function llenarTablaMensaje(items) {
+    $("#tabla").html("");
+    $("#tabla").show(500);
+
+    var tabla = `<table id ="tablaMensaje" border='1'> 
+                <tr>    
+                    <th>Id</th>
+                    <th>Mensaje</th>
+                    <th colspan='2'>Acciones</th>
+                </tr>`;
+
+    for (var i = 0; i < items.length; i++) {
+        tabla += `<tr id=${i}>
+                <td id="id">${items[i].id}</td>
+                <td id="messageText">${items[i].messageText}</td>
+                <td id="btnEditar"><button onclick='formularioEditarMensaje(${items[i].id}, ${i})'>Editar</button></td>
+                <td id="btnBorrar"><button onclick="borrarMensaje(${items[i].id})">Borrar</button></td>
+                </tr>`;
+    }
+    tabla += `</table>`;
+    $("#tabla").html(tabla);
+}
+
+/* Metodo GET Mensaje*/
+
+function mostrarMensajes() {
+    $("#imagen-inicial").hide();
+    $("#info").show();
+    $("#nuevoMensaje").hide();
+    $("#editarMensaje").hide();
+    $("#titulo").html("Mensaje");
+    $("#btnNuevo").attr("onclick", "formularioNuevoMensaje()");
+    $("#btnNuevo").html("Nuevo Mensaje");
+    $("#btnNuevo").show();
+    $.ajax(
+        {
+            url: "http://129.151.121.31/api/Message/all/",
+            type: "GET",
+            dataType: "JSON",
+            success: function (respuesta) {
+                console.log(respuesta);
+                llenarTablaMensaje(respuesta);
+            },
+            error: function (xhr, status) {
+                $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
+                $("#mensaje").hide(3000);
+            },
+            complete: function (xhr, status) {
+                $("#mensaje").html("Obteniendo listado de Mensaje. Status: " + status);
+                $("#mensaje").hide(3000);
+            }
+        }
+    )
+
+}
+
+/* Metodo POST Mensaje*/
+
+function nuevoMensaje() {
+    formularioNuevoMensaje();
+    let data = {
+        messageText: $("#nuevoMessageMensaje").val()
+    }
+
+    if (validarNuevoMensaje()) {
+        $.ajax({
+            url: "http://129.151.121.31/api/Message/save/",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/JSON; charset=utf-8",
+            success: function (respuesta) {
+                console.log(respuesta);
+                $("#mensaje").show(1000);
+                $("#mensaje").html("Nuevo Mensaje registrado");
+                $("#mensaje").hide(1000);
+                mostrarMensajes();
+                limpiarCamposnuevoMensaje();
+            },
+            error: function (xhr, status) {
+                $("#mensaje").show(1000);
+                $("#mensaje").html("Error en el registro... " + status);
+                $("#mensaje").hide(1000);
+
+            }
+        });
+    }
+}
+
+/*  Metodo DELETE Mensaje*/
+
+function borrarMensaje(codigo){
+    let datos={
+        id:codigo
+    };
+
+    let = datoBorrar = JSON.stringify(datos);
+    $.ajax({
+        url:"http://129.151.121.31/api/Message/"+ codigo,
+        data:datoBorrar,
+        type:"DELETE", 
+        contentType:"application/JSON",
+        dataType: "json",
+        success:function(respuesta){
+            $("#mensaje").show(1000);
+            $("#mensaje").html("Mensaje eliminado");
+            $("#mensaje").hide(1000);
+            mostrarMensajes();
+        },
+        error:function(xhr, status){
+            $("#mensajes").html("Ocurrio un problema al ejecutar la peticion: "+status);
+            $("#mensaje").hide(1000);
+        }
+    });
+}
+
+function formularioNuevoMensaje() {
+    $("#nuevoMensaje").show(500);
+    $("#nuevoMessageMensaje").focus();
+    $("#tablaMensaje").hide(500);
+    $("#btnNuevo").hide(500);
+
+}
+
+/* Validaciones Mensaje */
+
+// Validar formulario nuevo
+function validarNuevoMensaje() {
+    let messageText = $("#nuevoMessageMensaje").val();
+    let error = "";
+    $("#mensaje").val("");
+
+    if (validarVacio(messageText)) {
+        error = "Campo mensaje vacio <br>";
+        $("#mensaje").html(error);
+        $("#mensaje").show(1000);
+        $("#nuevoMessageMensaje").focus();
+        return false;
+    }
+    return true;
+}
+
+// Validar formulario editar
+function validarEditarMensaje() {
+    let messageText = $("#editarMessageMensaje").val();
+    let errores = "";
+    $("#mensaje").val("");
+
+    if (validarVacio(messageText)) {
+        errores = "Campo Mensaje vacio <br>";
+        $("#mensaje").html(errores);
+        $("#mensaje").show(1000);
+        $("#editarMessageMensaje").focus();
+        return false;
+    }
+    return true;
+}
+
+function limpiarCamposNuevoMensaje() {
+    $("#nuevoMessageMensaje").val("");
+}
+
+function limpiarCamposEditarMensaje() {
+    $("#editarMessageMensaje").val("");
 }

@@ -26,10 +26,11 @@
         <a href="#info" onclick="mostrarCategorias()"><img src="img/categories.png"
                 alt="ir a Categorias"><strong>Categorias</strong></a> <br>
 
-        <a href="#info" onclick="mostrarClientes()"><img src="img/client.png" 
-            alt="ir a clientes"> <strong>Clientes</strong></a> <br>
+        <a href="#info" onclick="mostrarClientes()"><img src="img/client.png" alt="ir a clientes">
+            <strong>Clientes</strong></a> <br>
 
-        <a href=""><img src="img/chat.png" alt="ir a mensajes"> <strong>Mensajes</strong></a> <br>
+        <a href="#info" onclick="mostrarMensajes()"><img src="img/chat.png" 
+            alt="ir a mensajes"> <strong>Mensajes</strong></a> <br>
     </aside>
     <article class="main">
         <div id="imagen-inicial"><img src="img/imagenInicial.png" alt=""></div>
@@ -160,6 +161,30 @@
                 <label>Password: <br>
                     <input type="text" id="PasswordEditarCliente" required></label> <br>
                 <br><br>
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCategoria()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
+            </fieldset>
+        </div>
+
+        <!-- Nuevo Mensaje -->
+        <div class="datos" id="nuevoMensaje">
+            <fieldset id="formNueva">
+                <legend><strong>Nueva Mensaje</strong></legend>
+                <label>Mensaje: <br>
+                    <input type="text" id="nuevoMessageMensaje" required></label> 
+                    <br> <br>
+                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevoMensaje()">
+                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarMensajes()">
+            </fieldset>
+        </div>
+        <br>
+        <!-- Editar Mensaje -->
+        <div class="datos" id="editarMensaje">
+            <fieldset>
+                <legend><strong>Editar Mensaje</strong></legend>
+                <label>Mensaje: <br>
+                    <input type="text" id="editarMessageMensaje" required></label> 
+                    <br><br>
                 <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCategoria()">
                 <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
             </fieldset>
