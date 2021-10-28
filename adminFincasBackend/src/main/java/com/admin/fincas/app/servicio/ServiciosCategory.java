@@ -47,10 +47,10 @@ public class ServiciosCategory {
         if(categoria.getId() != null){
             Optional<Category> list = crud.getCategoria(categoria.getId());
             if(!list.isEmpty()){
-                if(categoria.getDescription() != null){
-                    list.get().setDescription(categoria.getDescription());
-                } else if(categoria.getName() != null){
+                if(categoria.getName() != null){
                     list.get().setName(categoria.getName());
+                } else if(categoria.getDescription() != null){
+                    list.get().setDescription(categoria.getDescription());
                 }
                 return crud.save(list.get());
             }

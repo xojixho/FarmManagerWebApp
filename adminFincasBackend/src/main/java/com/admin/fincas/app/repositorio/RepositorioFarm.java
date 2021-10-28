@@ -19,21 +19,21 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RepositorioFarm {
     @Autowired
-    private InterfaceFarm crud;
+    private InterfaceFarm metodoCrud3;
     
     public List<Farm> getAll(){
-        return (List<Farm>) crud.findAll();
+        return (List<Farm>) metodoCrud3.findAll();
     }
     
     public Optional<Farm> getFarm(int id){
-        return crud.findById(id);
+        return metodoCrud3.findById(id);
     }
     
     public Farm save(Farm farm){
-        return crud.save(farm);
+        return metodoCrud3.save(farm);
     }
     
     public void delete(Farm farm){
-        crud.delete(farm);
+        metodoCrud3.delete(farm);
     }
 }

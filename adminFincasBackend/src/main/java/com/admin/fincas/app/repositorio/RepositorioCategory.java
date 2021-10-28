@@ -20,21 +20,21 @@ import org.springframework.stereotype.Repository;
 public class RepositorioCategory {
     
     @Autowired
-    private InterfaceCategory crud;
+    private InterfaceCategory metodoCrud;
     
     public List<Category> getAll(){
-        return (List<Category>) crud.findAll();
+        return (List<Category>) metodoCrud.findAll();
     }
     
     public Optional<Category> getCategoria(int id){
-        return crud.findById(id);
+        return metodoCrud.findById(id);
     }
     
     public Category save(Category categoria){
-        return crud.save(categoria);
+        return metodoCrud.save(categoria);
     }
     
     public void delete(Category categoria){
-        crud.delete(categoria);
+        metodoCrud.delete(categoria);
     }
 }

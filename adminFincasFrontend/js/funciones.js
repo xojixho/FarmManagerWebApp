@@ -99,6 +99,7 @@ function nuevaCategoria() {
 
 function editarCategoria() {
     let dataPut = {
+        id:$("#idEditarCategoria").val(),
         name: $("#nameEditarCategoria").val(),
         description: $("#descriptionEditarCategoria").val()
     }
@@ -116,7 +117,7 @@ function editarCategoria() {
                 $("#mensaje").html(" finca actualizada");
                 $("#mensaje").hide(1000);
                 limpiarCamposEditar();
-                mostrarFincas();
+                mostrarCategorias();
             },
             error: function (xhr, status) {
                 $("#mensaje").show();
@@ -156,10 +157,29 @@ function borrarCategoria(codigo) {
 }
 
 function formularioNuevaCategoria() {
+
     $("#nuevaCategoria").show(500);
     $("#nameNuevaCategoria").focus();
     $("#tablaCategoria").hide(500);
     $("#btnNuevo").hide(500);
+
+}
+
+function formularioEditarCategoria(id, i) {
+    document.getElementById("idEditarCategoria").value = id;
+
+    $("#" + `${i}`).each(function () {
+        var name = $(this).find("#name").html();
+        document.getElementById("nameEditarCategoria").placeholder = name;
+    });
+    $("#" + `${i}`).each(function () {
+        var description = $(this).find("#description").html();
+        document.getElementById("descriptionEditarCategoria").placeholder = description;
+    });
+    $("#editarCategoria").show(500);
+    $("#idEditarCategoria").focus();
+    $("#btnNuevo").hide(500);
+    $("#tabla").hide();
 
 }
 
@@ -191,7 +211,7 @@ function validarNuevaCategoria() {
 // Validar formulario editar
 function validarEditarCategoria() {
     let name = $("#nameEditarCategoria").val();
-    let description = $("#descriptionEditar").val();
+    let description = $("#descriptionEditarCategoria").val();
     let errores = "";
     $("#mensaje").val("");
 
