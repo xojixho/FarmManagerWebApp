@@ -42,7 +42,15 @@ public class Reservation {
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
     
-    private String score = "None";
+    private Integer score;
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
 
     public Date getCreationDate() {
         return creationDate;
@@ -103,17 +111,5 @@ public class Reservation {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
-    }
-    
-    
-
-    
+    } 
 }
