@@ -24,23 +24,23 @@ public class Farm implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String name;
     private String address;
     private Integer extension;
-    private String name;
     private String description;
     
     @ManyToOne
     @JoinColumn(name = "category")
-    @JsonIgnoreProperties("farm")
+    @JsonIgnoreProperties("farms")
     private Category category;
     
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "farm")
     @JsonIgnoreProperties({"farm", "client"})
-    private List<Reservation> reservations;
+    private List<Message> messages;
     
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "farm")
     @JsonIgnoreProperties({"farm", "client"})
-    private List<Message> messages;
+    private List<Reservation> reservations;
 
     public String getDescription() {
         return description;

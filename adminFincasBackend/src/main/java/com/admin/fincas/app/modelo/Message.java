@@ -25,7 +25,7 @@ public class Message implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMessage;
     private String messageText;
     
     @ManyToOne
@@ -38,12 +38,12 @@ public class Message implements Serializable{
     @JsonIgnoreProperties({"messages", "reservations"})
     private Client client;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdMessage() {
+        return idMessage;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdMessage(Integer idMessage) {
+        this.idMessage = idMessage;
     }
 
     public String getMessageText() {

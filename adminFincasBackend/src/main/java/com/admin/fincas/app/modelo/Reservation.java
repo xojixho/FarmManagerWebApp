@@ -31,7 +31,6 @@ public class Reservation {
     private Date startDate;
     private Date devolutionDate;
     private String status = "created";
-    private String score = "None";
     
     @ManyToOne
     @JoinColumn(name = "idFarm")
@@ -42,6 +41,8 @@ public class Reservation {
     @JoinColumn(name = "client")
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
+    
+    private String score = "None";
 
     public Date getCreationDate() {
         return creationDate;

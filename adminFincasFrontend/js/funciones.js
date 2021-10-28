@@ -816,12 +816,12 @@ function llenarTablaMensaje(items) {
 
     for (var i = 0; i < items.length; i++) {
         tabla += `<tr id=${i}>
-                <td id="id">${items[i].id}</td>
+                <td id="id">${items[i].idMessage}</td>
                 <td id="messageText">${items[i].messageText}</td>
                 <td id="client">${items[i].client.idClient}</td>
                 <td id="client">${items[i].farm.id}</td>
-                <td id="btnEditar"><button onclick='formularioEditarMensaje(${items[i].id}, ${i})'>Editar</button></td>
-                <td id="btnBorrar"><button onclick="borrarMensaje(${items[i].id})">Borrar</button></td>
+                <td id="btnEditar"><button onclick='formularioEditarMensaje(${items[i].idMessage}, ${i})'>Editar</button></td>
+                <td id="btnBorrar"><button onclick="borrarMensaje(${items[i].idMessage})">Borrar</button></td>
                 </tr>`;
     }
     tabla += `</table>`;
@@ -898,7 +898,7 @@ function nuevoMensaje() {
 
 function borrarMensaje(codigo) {
     let datos = {
-        id: codigo
+        idMessage: codigo
     };
 
     let = datoBorrar = JSON.stringify(datos);

@@ -31,10 +31,10 @@ public class ServiciosMessage {
     }
 
     public Message save(Message message) {
-        if (message.getId() == null) {
+        if (message.getIdMessage() == null) {
             return crud3.save(message);
         } else {
-            Optional<Message> list = crud3.getMessage(message.getId());
+            Optional<Message> list = crud3.getMessage(message.getIdMessage());
             if (list.isEmpty()) {
                 return crud3.save(message);
             } else {
@@ -44,8 +44,8 @@ public class ServiciosMessage {
     }
 
     public Message update(Message message) {
-        if (message.getId() != null) {
-            Optional<Message> list = crud3.getMessage(message.getId());
+        if (message.getIdMessage() != null) {
+            Optional<Message> list = crud3.getMessage(message.getIdMessage());
             if (!list.isEmpty()) {
                 if (message.getMessageText() != null) {
                     list.get().setMessageText(message.getMessageText());
