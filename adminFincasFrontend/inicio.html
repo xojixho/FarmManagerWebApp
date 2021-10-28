@@ -32,7 +32,7 @@
         <a href="#info" onclick="mostrarMensajes()"><img src="img/chat.png" alt="ir a mensajes">
             <strong>Mensajes</strong></a> <br>
 
-        <a href="#info" onclick="mostrarReservas()"><img src="img/reservations.png" alt="ir a reservations">
+        <a href="#info" onclick="mostrarReservaciones()"><img src="img/reservations.png" alt="ir a reservations">
             <strong>Reservas</strong></a> <br>
     </aside>
     <article class="main">
@@ -60,7 +60,7 @@
         <br>
         <!-- Nueva Finca -->
         <div class="datos" id="nuevaFinca">
-            <fieldset id="formNueva">
+            <fieldset>
                 <legend><strong>Nueva Finca</strong></legend>
                 <!-- <label>Id: <br>
                 <input type="number" id="idNueva" required></label> <br> -->
@@ -104,7 +104,7 @@
 
         <!-- Nueva Categoria -->
         <div class="datos" id="nuevaCategoria">
-            <fieldset id="formNuevaCategoria">
+            <fieldset>
                 <legend><strong>Nueva Categoria</strong></legend>
                 <label>Name: <br>
                     <input type="text" id="nameNuevaCategoria" required></label> <br>
@@ -135,8 +135,8 @@
 
         <!-- Nuevo Cliente -->
         <div class="datos" id="nuevoCliente">
-            <fieldset id="formNueva">
-                <legend><strong>Nueva Cliente</strong></legend>
+            <fieldset>
+                <legend><strong>Nuevo Cliente</strong></legend>
                 <label>Name: <br>
                     <input type="text" id="nameNuevoCliente" required></label> <br>
                 <label>Email: <br>
@@ -174,7 +174,11 @@
             <fieldset id="formNueva">
                 <legend><strong>Nueva Mensaje</strong></legend>
                 <label>Mensaje: <br>
-                    <input type="text" id="nuevoMessageMensaje" required></label>
+                    <input type="text" id="nuevoMessageMensaje" required></label> <br>
+                    <label>Cliente: <br>
+                        <input type="text" id="nuevoClientMensaje" required></label> <br>
+                        <label>Finca: <br>
+                            <input type="text" id="nuevoFarmMensaje" required></label> <br>
                 <br> <br>
                 <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevoMensaje()">
                 <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarMensajes()">
@@ -187,6 +191,10 @@
                 <legend><strong>Editar Mensaje</strong></legend>
                 <label>Mensaje: <br>
                     <input type="text" id="editarMessageMensaje" required></label>
+                    <label>Cliente: <br>
+                        <input type="text" id="editarClientMensaje" required></label> <br>
+                        <label>Finca: <br>
+                            <input type="text" id="editarFarmMensaje" required></label> <br>
                 <br><br>
                 <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCategoria()">
                 <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
@@ -194,43 +202,37 @@
         </div>
 
         <!-- Nueva Reserva -->
-        <div class="datos" id="nuevaReserva">
-            <fieldset id="formNueva">
+        <div class="datos" id="nuevaReservacion">
+            <fieldset>
                 <legend><strong>Nueva Reserva</strong></legend>
                 <!-- <label>Id: <br>
                 <input type="number" id="idNueva" required></label> <br> -->
-                <label>Address: <br>
-                    <input type="text" id="addressNueva" required></label> <br>
-                <label>Extension: <br>
-                    <input type="number" id="extensionNueva" required></label> <br>
-                <label>Category: <br>
-                    <input type="number" id="category_idNueva" required></label> <br>
-                <label>Name: <br>
-                    <input type="text" id="nameNueva" required></label> <br>
-                <label>Description: <br>
-                    <input type="text" id="descriptionNueva" required></label>
+                <label>Inicio Reserva: <br>
+                    <input type="date" id="reservaStartDateNueva" required></label> <br>
+                <label>Fin Reserva: <br>
+                    <input type="date" id="reservaEndDateNueva" required></label> <br>
+                <label>Cliente: <br>
+                    <input type="number" id="reservaClientNueva" required></label> <br>
+                <label>Finca: <br>
+                    <input type="text" id="reservaFincaNueva" required></label>
                 <br><br>
-                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevaReserva()">
-                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarReservas()">
+                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevaReservacion()">
+                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarReservaciones()">
             </fieldset>
         </div>
         <br>
         <!-- Editar Reserva -->
-        <div class="datos" id="editarReserva">
+        <div class="datos" id="editarReservacion">
             <fieldset>
                 <legend><strong>Editar Reserva</strong></legend>
-                <label>Id: <br>
-                    <input type="number" id="idEditar" disabled></label> <br>
-                <label>Address: <br>
-                    <input type="text" id="addressEditar" placeholder=""></label> <br>
-                <label>Extencion: <br>
-                    <input type="number" id="extensionEditar" placeholder=""></label> <br>
-                <label>Category Id: <br>
-                    <input type="number" id="category_idEditar" disabled placeholder=""></label> <br>
-                <label>Name: <br>
-                    <input type="text" id="nameEditar" placeholder=""></label> <br>
-                <label>Description: <br>
-                    <input type="text" id="descriptionEditar" required></label>
+                <label>Inicio Reserva: <br>
+                    <input type="text" id="reservaStartDateEditar" required></label> <br>
+                <label>Fin Reserva: <br>
+                    <input type="number" id="reservaEndDateEditar" required></label> <br>
+                <label>Cliente: <br>
+                    <input type="number" id="reservaClientEditar" required></label> <br>
+                <label>Finca: <br>
+                    <input type="text" id="reservaFincaEditar" required></label>
                 <br><br>
                 <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarReserva()">
                 <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarReservas()">
