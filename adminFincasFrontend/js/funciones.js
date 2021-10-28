@@ -43,7 +43,7 @@ function mostrarCategorias() {
     $("#btnNuevo").show();
     $.ajax(
         {
-            url: "http://129.151.121.31/api/Category/all/",
+            url: "http://129.151.121.31:8080/api/Category/all/",
             type: "GET",
             dataType: "JSON",
             success: function (respuesta) {
@@ -73,7 +73,7 @@ function nuevaCategoria() {
 
     if (validarNuevaCategoria()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Category/save/",
+            url: "http://129.151.121.31:8080/api/Category/save/",
             data: JSON.stringify(data),
             type: "POST",
             contentType: "application/JSON; charset=utf-8",
@@ -95,6 +95,39 @@ function nuevaCategoria() {
     }
 }
 
+/* Metodo PUT Categorias*/
+
+function editarCategoria() {
+    let dataPut = {
+        name: $("#nameEditarCategoria").val(),
+        description: $("#descriptionEditarCategoria").val()
+    }
+    console.log(dataPut);
+    if (validarEditarCategoria()) {
+        $.ajax({
+            url: "http://129.151.121.31:8080/api/Category/update/",
+            type: "PUT",
+            data: JSON.stringify(dataPut),
+            contentType: "application/JSON",
+            dataType: "JSON",
+            success: function (respuesta) {
+                console.log(respuesta);
+                $("#mensaje").show(500);
+                $("#mensaje").html(" finca actualizada");
+                $("#mensaje").hide(1000);
+                limpiarCamposEditar();
+                mostrarFincas();
+            },
+            error: function (xhr, status) {
+                $("#mensaje").show();
+                $("#mensaje").html("Error en la actualizacion... " + status);
+                $("#mensaje").hide(500);
+
+            }
+        });
+    }
+}
+
 /*  Metodo DELETE Categoria*/
 
 function borrarCategoria(codigo) {
@@ -104,7 +137,7 @@ function borrarCategoria(codigo) {
     let datoBorrar = JSON.stringify(datos);
 
     $.ajax({
-        url: "http://129.151.121.31/api/Category/"+ codigo,
+        url: "http://129.151.121.31:8080/api/Category/"+ codigo,
         data: datoBorrar,
         type: "DELETE",
         contentType: "application/JSON",
@@ -233,7 +266,7 @@ function mostrarFincas() {
     $("#btnNuevo").show();
     $.ajax(
         {
-            url: "http://129.151.121.31/api/Farm/all/",
+            url: "http://129.151.121.31:8080/api/Farm/all/",
             type: "GET",
             dataType: "JSON",
             success: function (respuesta) {
@@ -266,7 +299,7 @@ function nuevaFinca() {
 
     if (validarNuevo()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Farm/save/",
+            url: "http://129.151.121.31:8080/api/Farm/save/",
             data: JSON.stringify(data),
             type: "POST",
             contentType: "application/JSON; charset=utf-8",
@@ -301,7 +334,7 @@ function editarFinca() {
     console.log(dataPut);
     if (validarEditar()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Farm/update/",
+            url: "http://129.151.121.31:8080/api/Farm/update/",
             type: "PUT",
             data: JSON.stringify(dataPut),
             contentType: "application/JSON",
@@ -333,7 +366,7 @@ function borrarFinca(codigo) {
 
     let datoBorrar = JSON.stringify(dato);
     $.ajax({
-        url: "http://129.151.121.31/api/Farm/" + codigo,
+        url: "http://129.151.121.31:8080/api/Farm/" + codigo,
         data: datoBorrar,
         type: "DELETE",
         contentType: "application/JSON",
@@ -548,7 +581,7 @@ function mostrarClientes() {
     $("#btnNuevo").show();
     $.ajax(
         {
-            url: "http://129.151.121.31/api/Client/all/",
+            url: "http://129.151.121.31:8080/api/Client/all/",
             type: "GET",
             dataType: "JSON",
             success: function (respuesta) {
@@ -580,7 +613,7 @@ function nuevoCliente() {
     console.log(data);
     if (validarNuevoCliente()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Client/save/",
+            url: "http://129.151.121.31:8080/api/Client/save/",
             data: JSON.stringify(data),
             type: "POST",
             contentType: "application/JSON; charset=utf-8",
@@ -615,7 +648,7 @@ function editarCliente() {
     console.log(dataPut);
     if (validarEditar()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Farm/update/",
+            url: "http://129.151.121.31:8080/api/Farm/update/",
             type: "PUT",
             data: JSON.stringify(dataPut),
             contentType: "application/JSON",
@@ -647,7 +680,7 @@ function borrarCliente(codigo) {
 
     let datoBorrar = JSON.stringify(datos);
     $.ajax({
-        url: "http://129.151.121.31/api/Client/" + codigo,
+        url: "http://129.151.121.31:8080/api/Client/" + codigo,
         data: datoBorrar,
         type: "DELETE",
         contentType: "application/JSON",
@@ -841,7 +874,7 @@ function mostrarMensajes() {
     $("#btnNuevo").show();
     $.ajax(
         {
-            url: "http://129.151.121.31/api/Message/all/",
+            url: "http://129.151.121.31:8080/api/Message/all/",
             type: "GET",
             dataType: "JSON",
             success: function (respuesta) {
@@ -872,7 +905,7 @@ function nuevoMensaje() {
 
     if (validarNuevoMensaje()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Message/save/",
+            url: "http://129.151.121.31:8080/api/Message/save/",
             data: JSON.stringify(data),
             type: "POST",
             contentType: "application/JSON; charset=utf-8",
@@ -903,7 +936,7 @@ function borrarMensaje(codigo) {
 
     let = datoBorrar = JSON.stringify(datos);
     $.ajax({
-        url: "http://129.151.121.31/api/Message/" + codigo,
+        url: "http://129.151.121.31:8080/api/Message/" + codigo,
         data: datoBorrar,
         type: "DELETE",
         contentType: "application/JSON",
@@ -1014,7 +1047,7 @@ function mostrarReservaciones() {
     $("#btnNuevo").show();
     $.ajax(
         {
-            url: "http://129.151.121.31/api/Reservation/all/",
+            url: "http://129.151.121.31:8080/api/Reservation/all/",
             type: "GET",
             dataType: "JSON",
             success: function (respuesta) {
@@ -1046,7 +1079,7 @@ function nuevaReservacion() {
 
     if (validarNuevaReserva()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Reservation/save/",
+            url: "http://129.151.121.31:8080/api/Reservation/save/",
             data: JSON.stringify(data),
             type: "POST",
             contentType: "application/JSON; charset=utf-8",
@@ -1080,7 +1113,7 @@ function editarReservacion() {
     console.log(dataPut);
     if (validarEditarReservacion()) {
         $.ajax({
-            url: "http://129.151.121.31/api/Reservation/update/",
+            url: "http://129.151.121.31:8080/api/Reservation/update/",
             type: "PUT",
             data: JSON.stringify(dataPut),
             contentType: "application/JSON",
@@ -1112,7 +1145,7 @@ function borrarReservacion(codigo) {
 
     let datoBorrar = JSON.stringify(dato);
     $.ajax({
-        url: "http://129.151.121.31/api/Reservation/" + codigo,
+        url: "http://129.151.121.31:8080/api/Reservation/" + codigo,
         data: datoBorrar,
         type: "DELETE",
         contentType: "application/JSON",
