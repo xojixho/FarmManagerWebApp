@@ -222,6 +222,7 @@ function llenarTablaFincas(items) {
 /* Metodo GET Fincas*/
 
 function mostrarFincas() {
+    $("#mensaje").val("");
     $("#imagen-inicial").hide();
     $("#info").show();
     $("#nuevaFinca").hide();
