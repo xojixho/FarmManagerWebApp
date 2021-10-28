@@ -21,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "reservation")
-@JsonIgnoreProperties({"score","creationDate"})
+@JsonIgnoreProperties("creationDate")
 public class Reservation {
     
     @Id
@@ -31,16 +31,16 @@ public class Reservation {
     private Date startDate;
     private Date devolutionDate;
     private String status = "created";
-    private Integer score;
+    private String score = "None";
     
     @ManyToOne
     @JoinColumn(name = "idFarm")
-    @JsonIgnoreProperties("reservation")
+    @JsonIgnoreProperties("reservations")
     private Farm farm;
     
     @ManyToOne
     @JoinColumn(name = "client")
-    @JsonIgnoreProperties({"reservation","message"})
+    @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
 
     public Date getCreationDate() {
@@ -104,13 +104,15 @@ public class Reservation {
         this.status = status;
     }
 
-    public Integer getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(Integer score) {
+    public void setScore(String score) {
         this.score = score;
     }
+    
+    
 
     
 }
