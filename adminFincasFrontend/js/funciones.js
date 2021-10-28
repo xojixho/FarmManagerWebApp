@@ -104,7 +104,7 @@ function borrarCategoria(codigo) {
     let datoBorrar = JSON.stringify(datos);
 
     $.ajax({
-        url: "http://129.151.121.31/api/Category/"+ codigo,
+        url: "http://129.151.121.31/api/Category/"+codigo,
         data: datoBorrar,
         type: "DELETE",
         contentType: "application/JSON",
