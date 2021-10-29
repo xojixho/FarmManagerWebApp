@@ -61,8 +61,6 @@ public class ServiciosFarm {
                 if(farm.getExtension() != null){
                     list.get().setExtension(farm.getExtension());
                 }
-                
-                
                 crud2.save(list.get());
                 return list.get();
             }else{

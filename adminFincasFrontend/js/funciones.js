@@ -348,8 +348,8 @@ function editarFinca() {
         id: $("#idEditar").val(),
         address: $("#addressEditar").val(),
         name: $("#nameEditar").val(),
-        description: $("#descriptionEditar").val(),
-        extension: $("#extensionEditar").val()
+        extension: $("#extensionEditar").val(),
+        description: $("#descriptionEditar").val()
     };
     console.log(dataPut);
     if (validarEditar()) {
