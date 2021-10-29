@@ -138,7 +138,7 @@ function borrarCategoria(codigo) {
     let datoBorrar = JSON.stringify(datos);
 
     $.ajax({
-        url: "http://129.151.121.31:8080/api/Category/"+codigo,
+        url: "http://129.151.121.31:8080/api/Category/" + codigo,
         data: datoBorrar,
         type: "DELETE",
         contentType: "application/JSON",
@@ -240,6 +240,14 @@ function limpiarCamposEditarCategoria() {
     $("#nameEditarCategoria").val("");
     $("#descriptionEditarCategoria").val("");
 }
+
+/* -----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------- */
+
+/* Finca */
+
+/* -----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------- */
 
 /* Tabla Finca  */
 
@@ -350,7 +358,7 @@ function editarFinca() {
         name: $("#nameEditar").val(),
         extension: $("#extensionEditar").val(),
         description: $("#descriptionEditar").val()
-    };
+    }
     console.log(dataPut);
     if (validarEditar()) {
         $.ajax({
@@ -535,13 +543,7 @@ function validarEditar() {
         $("#mensaje").show(1000);
         $("#extensionEditar").focus();
         return false;
-    } /* else if (validarVacio(category_id)) {
-        errores = "Campo category_id vacio <br>";
-        $("#mensaje").html(errores);
-        $("#mensaje").show(1000);
-        $("#category_idEditar").focus();
-        return false;
-    } */ else if (validarVacio(name)) {
+    } else if (validarVacio(name)) {
         errores = "Campo name vacio <br>";
         $("#mensaje").html(errores);
         $("#mensaje").show(1000);
@@ -557,9 +559,13 @@ function validarEditar() {
     return true;
 }
 
-
+/* -----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------- */
 
 /* Clientes */
+
+/* -----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------- */
 
 function llenarTablaClientes(items) {
     $("#tabla").html("");
@@ -567,6 +573,7 @@ function llenarTablaClientes(items) {
 
     var tabla = `<table id ="tablaCliente" border='1'> 
                 <tr>    
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Age</th>
@@ -576,6 +583,7 @@ function llenarTablaClientes(items) {
 
     for (var i = 0; i < items.length; i++) {
         tabla += `<tr id=${i}>
+                <td id="id">${items[i].idClient}</td>
                 <td id="name">${items[i].name}</td>
                 <td id="age">${items[i].age}</td>
                 <td id="email">${items[i].email}</td>
@@ -659,16 +667,16 @@ function nuevoCliente() {
 
 function editarCliente() {
     let dataPut = {
-        id: $("#idEditar").val(),
-        address: $("#addressEditar").val(),
-        name: $("#nameEditar").val(),
-        description: $("#descriptionEditar").val(),
-        extension: $("#extensionEditar").val()
-    };
+        idClient: $("#idCliente").val(),
+        name: $("#nameEditarCliente").val(),
+        age: $("#ageEditarCliente").val(),
+        email: $("#emailEditarCliente").val(),
+        password: $("#passwordEditarCliente").val()
+    }
     console.log(dataPut);
-    if (validarEditar()) {
+    if (validarEditarCliente()) {
         $.ajax({
-            url: "http://129.151.121.31:8080/api/Farm/update/",
+            url: "http://129.151.121.31:8080/api/Client/update/",
             type: "PUT",
             data: JSON.stringify(dataPut),
             contentType: "application/JSON",
@@ -676,10 +684,10 @@ function editarCliente() {
             success: function (respuesta) {
                 console.log(respuesta);
                 $("#mensaje").show(500);
-                $("#mensaje").html(" finca actualizada");
+                $("#mensaje").html(" Cliente actualizada");
                 $("#mensaje").hide(1000);
                 limpiarCamposEditar();
-                mostrarFincas();
+                mostrarClientes();
             },
             error: function (xhr, status) {
                 $("#mensaje").show();
@@ -696,7 +704,7 @@ function editarCliente() {
 function borrarCliente(codigo) {
     let datos = {
         idClient: codigo
-    };
+    }
 
     let datoBorrar = JSON.stringify(datos);
     $.ajax({
@@ -726,33 +734,29 @@ function formularioNuevoCliente() {
 
 }
 
-function formularioEditarFinca(id, i) {
+function formularioEditarCliente(id, i) {
 
-    document.getElementById("idEditar").value = id;
+    document.getElementById("idCliente").value = id;
 
-    $("#" + `${i}`).each(function () {
-        var address = $(this).find("#address").html();
-        document.getElementById("addressEditar").placeholder = address;
-    });
-    $("#" + `${i}`).each(function () {
-        var extension = $(this).find("#extension").html();
-        document.getElementById("extensionEditar").placeholder = extension;
-    });
-    $("#" + `${i}`).each(function () {
-        var category_id = $(this).find("#category").html();
-        document.getElementById("category_idEditar").value = category_id;
-    });
     $("#" + `${i}`).each(function () {
         var name = $(this).find("#name").html();
-        document.getElementById("nameEditar").placeholder = name;
+        document.getElementById("nameEditarCliente").placeholder = name;
     });
     $("#" + `${i}`).each(function () {
-        var description = $(this).find("#description").html();
-        document.getElementById("descriptionEditar").placeholder = description;
+        var email = $(this).find("#email").html();
+        document.getElementById("emailEditarCliente").placeholder = email;
+    });
+    $("#" + `${i}`).each(function () {
+        var age = $(this).find("#age").html();
+        document.getElementById("ageEditarCliente").placeholder = age;
+    });
+    $("#" + `${i}`).each(function () {
+        var password = $(this).find("#password").html();
+        document.getElementById("passwordEditarCliente").placeholder = password;
     });
 
-    $("#editarFinca").show(500);
-    $("#addressEditar").focus();
+    $("#editarCliente").show(500);
+    $("#nameEditarCliente").focus();
     $("#btnNuevo").hide(500);
     $("#tabla").hide();
 
@@ -768,7 +772,7 @@ function limpiarCamposNuevoCliente() {
 function limpiarCamposEditarCliente() {
     $("#nameEditarCliente").val("");
     $("#emailEditarCliente").val("");
-    $("#ageEditarCliete").val("");
+    $("#ageEditarCliente").val("");
     $("#PasswordEditarCliente").val("");
 }
 
@@ -813,46 +817,47 @@ function validarNuevoCliente() {
 }
 
 // Validar formulario editar
-function validarEditar() {
-    let address = $("#addressEditar").val();
-    let extension = $("#extensionEditar").val();
-    // let category_id = $("#category_idEditar").val();
-    let name = $("#nameEditar").val();
-    let description = $("#descriptionEditar").val();
+function validarEditarCliente() {
+    let name = $("#nameEditarCliente").val();
+    let age = $("#ageEditarCliente").val();
+    let email = $("#emailEditarCliente").val();
+    let password = $("#passwordEditarCliente").val();
     let errores = "";
     $("#mensaje").val("");
 
-    if (validarVacio(address)) {
-        errores = "Campo address vacio <br>";
-        $("#mensaje").html(errores);
-        $("#mensaje").show(1000);
-        $("#addressEditar").focus();
-        return false;
-    } else if (validarVacio(extension)) {
-        errores = "Campo extension vacio <br>";
-        $("#mensaje").html(errores);
-        $("#mensaje").show(1000);
-        $("#extensionEditar").focus();
-        return false;
-    } else if (validarVacio(name)) {
+    if (validarVacio(name)) {
         errores = "Campo name vacio <br>";
         $("#mensaje").html(errores);
         $("#mensaje").show(1000);
-        $("#nameEditar").focus();
+        $("#nameEditarCliente").focus();
         return false;
-    } else if (validarVacio(description)) {
-        errores = "Campo description vacio <br>";
+    } else if (validarVacio(age)) {
+        errores = "Campo age vacio <br>";
         $("#mensaje").html(errores);
         $("#mensaje").show(1000);
-        $("#descriptionEditar").focus();
+        $("#ageEditarCliente").focus();
+        return false;
+    } else if (validarVacio(email)) {
+        errores = "Campo email vacio <br>";
+        $("#mensaje").html(errores);
+        $("#mensaje").show(1000);
+        $("#emailEditarCliente").focus();
+        return false;
+    } else if (validarVacio(password)) {
+        errores = "Campo password vacio <br>";
+        $("#mensaje").html(errores);
+        $("#mensaje").show(1000);
+        $("#passwordEditarCliente").focus();
         return false;
     }
     return true;
 }
 
+/* -----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------- */
 /* Mensajes */
-
-
+/* -----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------- */
 
 function llenarTablaMensaje(items) {
     $("#tabla").html("");
@@ -919,8 +924,8 @@ function mostrarMensajes() {
 function nuevoMensaje() {
     let data = {
         messageText: $("#nuevoMessageMensaje").val(),
-        client: {idClient:$("#nuevoClientMensaje").val()},
-        farm: {id:$("#nuevoFarmMensaje").val()}
+        client: { idClient: $("#nuevoClientMensaje").val() },
+        farm: { id: $("#nuevoFarmMensaje").val() }
     };
 
     if (validarNuevoMensaje()) {
@@ -1093,8 +1098,8 @@ function nuevaReservacion() {
     let data = {
         startDate: $("#reservaStartDateNueva").val(),
         devolutionDate: $("#reservaEndDateNueva").val(),
-        client: {idClient: $("#reservaClientNueva").val()},
-        farm: {id:$("#reservaFincaNueva").val()}
+        client: { idClient: $("#reservaClientNueva").val() },
+        farm: { id: $("#reservaFincaNueva").val() }
     }
 
     if (validarNuevaReserva()) {
@@ -1128,7 +1133,7 @@ function editarReservacion() {
         startDate: $("#reservaStartDateEditar").val(),
         endDate: $("#reservaEndDateEditar").val(),
         client: { id: $("#reservaClientEditar").val() },
-        farm: {id:$("#reservaFincaEditar").val()}
+        farm: { id: $("#reservaFincaEditar").val() }
     };
     console.log(dataPut);
     if (validarEditarReservacion()) {
@@ -1203,7 +1208,7 @@ function formularioEditarReservacion(id, i) {
 // Validar formulario nuevo
 function validarNuevaReserva() {
     return true;
-    
+
 }
 
 // Validar formulario editar

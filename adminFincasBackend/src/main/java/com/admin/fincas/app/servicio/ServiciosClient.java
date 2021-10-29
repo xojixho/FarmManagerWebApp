@@ -54,6 +54,9 @@ public class ServiciosClient {
                 if(client.getEmail()!=null){
                     list.get().setEmail(client.getEmail());
                 }
+                if(client.getPassword()!=null){
+                    list.get().setPassword(client.getPassword());
+                }
                 crud1.save(list.get());
                 return list.get();
             }else{
