@@ -99,7 +99,7 @@ function nuevaCategoria() {
 
 function editarCategoria() {
     let dataPut = {
-        id:$("#idEditarCategoria").val(),
+        id: $("#idEditarCategoria").val(),
         name: $("#nameEditarCategoria").val(),
         description: $("#descriptionEditarCategoria").val()
     }
@@ -138,7 +138,7 @@ function borrarCategoria(codigo) {
     let datoBorrar = JSON.stringify(datos);
 
     $.ajax({
-        url: "http://129.151.121.31:8080/api/Category/"+ codigo,
+        url: "http://129.151.121.31:8080/api/Category/"+codigo,
         data: datoBorrar,
         type: "DELETE",
         contentType: "application/JSON",
@@ -241,7 +241,7 @@ function limpiarCamposEditarCategoria() {
     $("#descriptionEditarCategoria").val("");
 }
 
-/* Tabla Reservacions  */
+/* Tabla Finca  */
 
 function llenarTablaFincas(items) {
     $("#tabla").html("");
