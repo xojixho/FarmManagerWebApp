@@ -56,7 +56,7 @@ public class ServiciosFarm {
                     list.get().setCategory(farm.getCategory());
                 }
                 if(farm.getDescription()!= null){
-                    list.get().setName(farm.getDescription());
+                    list.get().setDescription(farm.getDescription());
                 }
                 if(farm.getExtension() != null){
                     list.get().setExtension(farm.getExtension());
