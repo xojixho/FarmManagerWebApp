@@ -877,7 +877,7 @@ function llenarTablaMensaje(items) {
                 <td id="id">${items[i].idMessage}</td>
                 <td id="messageText">${items[i].messageText}</td>
                 <td id="client">${items[i].client.idClient}</td>
-                <td id="client">${items[i].farm.id}</td>
+                <td id="farm">${items[i].farm.id}</td>
                 <td id="btnEditar"><button onclick='formularioEditarMensaje(${items[i].idMessage}, ${i})'>Editar</button></td>
                 <td id="btnBorrar"><button onclick="borrarMensaje(${items[i].idMessage})">Borrar</button></td>
                 </tr>`;
@@ -952,14 +952,46 @@ function nuevoMensaje() {
     }
 }
 
+/* Metodo PUT */
+
+function editarMensaje() {
+    let data = {
+        idMessage: $("#idMensaje").val(),
+        messageText: $("#editarMessageMensaje").val()
+    };
+    console.log(data);
+    let dataPut = JSON.stringify(data);
+
+    if (validarEditarMensaje()) {
+        $.ajax({
+            url: "http://129.151.121.31:8080/api/Message/update/",
+            data: dataPut,
+            type: "PUT",
+            contentType: "application/JSON",
+            success: function (respuesta) {
+                $("#mensaje").show(1000);
+                $("#mensaje").html(" Mensaje actualizado");
+                $("#mensaje").hide(1000);
+                mostrarMensajes();
+            },
+            error: function (xhr, status) {
+                $("#mensaje").show(1000);
+                $("#mensaje").html("Error en la actualizacion... " + status);
+                $("#mensaje").hide(1000);
+
+            }
+        });
+    }
+}
+
 /*  Metodo DELETE Mensaje*/
 
 function borrarMensaje(codigo) {
     let datos = {
         idMessage: codigo
-    };
+    }
 
-    let = datoBorrar = JSON.stringify(datos);
+    let datoBorrar = JSON.stringify(datos);
     $.ajax({
         url: "http://129.151.121.31:8080/api/Message/" + codigo,
         data: datoBorrar,
@@ -983,6 +1015,24 @@ function formularioNuevoMensaje() {
     $("#nuevoMensaje").show(500);
     $("#nuevoMessageMensaje").focus();
     $("#tablaMensaje").hide(500);
+    $("#btnNuevo").hide(500);
+
+}
+
+function formularioEditarMensaje(id, i) {
+    document.getElementById("idMensaje").value = id;
+
+    $("#" + `${i}`).each(function () {
+        var client = $(this).find("#client").html();
+        document.getElementById("editarClientMensaje").value = client;
+    });
+    $("#" + `${i}`).each(function () {
+        var farm = $(this).find("#farm").html();
+        document.getElementById("editarFarmMensaje").value = farm;
+    });
+
+    $("#editarMensaje").show(500);
+    $("#editarMessageMensaje").focus();
     $("#btnNuevo").hide(500);
 
 }
@@ -1038,6 +1088,7 @@ function llenarTablaReservaciones(items) {
 
     var tabla = `<table id ="tablaReservacion" border='1'> 
                 <tr>    
+                    <th>Id</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>id Cliente</th>
@@ -1047,6 +1098,7 @@ function llenarTablaReservaciones(items) {
 
     for (var i = 0; i < items.length; i++) {
         tabla += `<tr id=${i}>
+                <td id="id">${items[i].idReservation}</td>
                 <td id="startDate">${items[i].startDate}</td>
                 <td id="endDate">${items[i].devolutionDate}</td>
                 <td id="client">${items[i].client.idClient}</td>
@@ -1130,8 +1182,9 @@ function nuevaReservacion() {
 
 function editarReservacion() {
     let dataPut = {
+        idReservation: $("#idReserva").val(),
         startDate: $("#reservaStartDateEditar").val(),
-        endDate: $("#reservaEndDateEditar").val(),
+        devolutionDate: $("#reservaEndDateEditar").val(),
         client: { id: $("#reservaClientEditar").val() },
         farm: { id: $("#reservaFincaEditar").val() }
     };
@@ -1197,6 +1250,15 @@ function formularioNuevaReservacion() {
 
 function formularioEditarReservacion(id, i) {
 
+    document.getElementById("idReserva").value = id;
+
+    /* 
+
+    llenar selectores
+    
+    
+    */
+
     $("#editarReservacion").show(500);
     $("#btnNuevo").hide(500);
     $("#tabla").hide();
@@ -1212,45 +1274,7 @@ function validarNuevaReserva() {
 }
 
 // Validar formulario editar
-/* function validarEditar() {
-    let address = $("#addressEditar").val();
-    let extension = $("#extensionEditar").val();
-    // let category_id = $("#category_idEditar").val();
-    let name = $("#nameEditar").val();
-    let description = $("#descriptionEditar").val();
-    let errores = "";
-    $("#mensaje").val("");
-
-    if (validarVacio(address)) {
-        errores = "Campo address vacio <br>";
-        $("#mensaje").html(errores);
-        $("#mensaje").show(1000);
-        $("#addressEditar").focus();
-        return false;
-    } else if (validarVacio(extension)) {
-        errores = "Campo extension vacio <br>";
-        $("#mensaje").html(errores);
-        $("#mensaje").show(1000);
-        $("#extensionEditar").focus();
-        return false;
-    } else if (validarVacio(category_id)) {
-        errores = "Campo category_id vacio <br>";
-        $("#mensaje").html(errores);
-        $("#mensaje").show(1000);
-        $("#category_idEditar").focus();
-        return false;
-    } else if (validarVacio(name)) {
-        errores = "Campo name vacio <br>";
-        $("#mensaje").html(errores);
-        $("#mensaje").show(1000);
-        $("#nameEditar").focus();
-        return false;
-    } else if (validarVacio(description)) {
-        errores = "Campo description vacio <br>";
-        $("#mensaje").html(errores);
-        $("#mensaje").show(1000);
-        $("#descriptionEditar").focus();
-        return false;
-    }
+function validarEditarReservacion() {
+    
     return true;
-} */
+}
