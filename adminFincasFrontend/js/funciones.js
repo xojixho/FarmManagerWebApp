@@ -1219,7 +1219,7 @@ function editarReservacion() {
 function borrarReservacion(codigo) {
     let dato = {
         idReservation: codigo
-    };
+    }
 
     let datoBorrar = JSON.stringify(dato);
     $.ajax({

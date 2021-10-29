@@ -16,15 +16,30 @@ public class ServiciosReservation {
     
      @Autowired
     private RepositorioReservation crud4;
+     
 
+     /**
+      * El metodo getAll busca todas las reservaciones
+      * @return lista
+      */
     public List<Reservation> getAll(){
         return crud4.getAll();
     }
 
+    /**
+     * Buscar reservacion por id
+     * @param reservationId
+     * @return lista
+     */
     public Optional<Reservation> getReservation(int reservationId) {
         return crud4.getReservation(reservationId);
     }
 
+    /**
+     * registra nueva reserva
+     * @param reservation
+     * @return reservation
+     */
     public Reservation save(Reservation reservation){
         if(reservation.getIdReservation()==null){
             return crud4.save(reservation);
@@ -38,6 +53,11 @@ public class ServiciosReservation {
         }
     }
 
+    /**
+     * actualizar 
+     * @param reservation
+     * @return reservation
+     */
     public Reservation update(Reservation reservation){
         if(reservation.getIdReservation()!=null){
             Optional<Reservation> list= crud4.getReservation(reservation.getIdReservation());
@@ -62,6 +82,11 @@ public class ServiciosReservation {
         }
     }
 
+    /**
+     * borrar
+     * @param reservationId
+     * @return boolean
+     */
     public boolean deleteReservation(int reservationId) {
         Boolean aBoolean = getReservation(reservationId).map(reservation -> {
             crud4.delete(reservation);
