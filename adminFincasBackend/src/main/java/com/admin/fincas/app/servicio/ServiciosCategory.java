@@ -49,7 +49,8 @@ public class ServiciosCategory {
             if(!list.isEmpty()){
                 if(categoria.getName() != null){
                     list.get().setName(categoria.getName());
-                } else if(categoria.getDescription() != null){
+                }
+                if(categoria.getDescription() != null){
                     list.get().setDescription(categoria.getDescription());
                 }
                 return crud.save(list.get());

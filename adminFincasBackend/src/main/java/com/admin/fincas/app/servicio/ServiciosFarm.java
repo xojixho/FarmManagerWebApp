@@ -48,13 +48,17 @@ public class ServiciosFarm {
             if(!list.isEmpty()){
                 if(farm.getName() != null){
                     list.get().setName(farm.getName());
-                }else if(farm.getAddress() != null){
+                }
+                if(farm.getAddress() != null){
                     list.get().setAddress(farm.getAddress());
-                }else if(farm.getExtension() != null){
+                }
+                if(farm.getExtension() != null){
                     list.get().setExtension(farm.getExtension());
-                }else if(farm.getName() != null){
+                }
+                if(farm.getName() != null){
                     list.get().setName(farm.getName());
-                }else if(farm.getCategory() != null){
+                }
+                if(farm.getCategory() != null){
                     list.get().setCategory(farm.getCategory());
                 }
                 crud2.save(list.get());
