@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+    <title>AppFincas</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body class="grid-container">
+    <header class="header">
+        <h1>Administracion Fincas</h1>
+    </header>
+    <nav class="navbar">
+        <a id="usuario" href=""><img src="img/user.png" alt="">usuario</a>
+        <a id="log" href=""></a>
+    </nav>
+    <aside class="sidebar">
+        <a href="#info" onclick="mostrarFincas()"><img src="img/farmer.png"
+                alt="ir a fincas"><strong>Fincas</strong></a> <br>
+        <a href="#info" onclick="mostrarCategorias()"><img src="img/categories.png"
+                alt="ir a Categorias"><strong>Categorias</strong></a> <br>
+
+        <a href="#info" onclick="mostrarClientes()"><img src="img/client.png" alt="ir a clientes">
+            <strong>Clientes</strong></a> <br>
+
+        <a href="#info" onclick="mostrarMensajes()"><img src="img/chat.png" alt="ir a mensajes">
+            <strong>Mensajes</strong></a> <br>
+
+        <a href="#info" onclick="mostrarReservaciones()"><img src="img/reservations.png" alt="ir a reservations">
+            <strong>Reservas</strong></a> <br>
+    </aside>
+    <article class="main">
+        <div id="imagen-inicial"><img src="img/imagenInicial.png" alt=""></div>
+        <!-- <h3 id="bienvenido">Bienvenido</h3> -->
+
+        <div id="info">
+            <!-- Titulo -->
+            <h2 id="titulo">
+                </h1>
+                <!-- Mensajes de estado -->
+                <div id="mensaje"></div>
+                <br>
+                <div style="text-align: left;">
+                    <!-- Boton Ingresar nuevo-->
+                    <button id="btnNuevo" onclick=""></button>
+                </div>
+                <br>
+                <!-- Tabla -->
+                <div class="datos" id="tabla"></div>
+                <br>
+
+
+        </div>
+        <br>
+        <!-- Nueva Finca -->
+        <div class="datos" id="nuevaFinca">
+            <fieldset>
+                <legend><strong>Nueva Finca</strong></legend>
+                <!-- <label>Id: <br>
+                <input type="number" id="idNueva" required></label> <br> -->
+                <label>Address: <br>
+                    <input type="text" id="addressNueva" required></label> <br>
+                <label>Extension: <br>
+                    <input type="number" id="extensionNueva" required></label> <br>
+                <label>Category: <br>
+                    <input type="number" id="category_idNueva" required></label> <br>
+                <label>Name: <br>
+                    <input type="text" id="nameNueva" required></label> <br>
+                <label>Description: <br>
+                    <input type="text" id="descriptionNueva" required></label>
+                <br><br>
+                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevaFinca()">
+                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarFincas()">
+            </fieldset>
+        </div>
+        <br>
+        <!-- Editar Finca -->
+        <div class="datos" id="editarFinca">
+            <fieldset>
+                <legend><strong>Editar Finca</strong></legend>
+                <label>Id: <br>
+                    <input type="number" id="idEditar" disabled></label> <br>
+                <label>Address: <br>
+                    <input type="text" id="addressEditar" placeholder=""></label> <br>
+                <label>Extencion: <br>
+                    <input type="number" id="extensionEditar" placeholder=""></label> <br>
+                <label>Category Id: <br>
+                    <input type="number" id="category_idEditar" disabled placeholder=""></label> <br>
+                <label>Name: <br>
+                    <input type="text" id="nameEditar" placeholder=""></label> <br>
+                <label>Description: <br>
+                    <input type="text" id="descriptionEditar" required></label>
+                <br><br>
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarFinca()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarFincas()">
+            </fieldset>
+        </div>
+
+        <!-- Nueva Categoria -->
+        <div class="datos" id="nuevaCategoria">
+            <fieldset>
+                <legend><strong>Nueva Categoria</strong></legend>
+                <label>Name: <br>
+                    <input type="text" id="nameNuevaCategoria" required></label> <br>
+                <label>Description: <br>
+                    <input type="text" id="descriptionNuevaCategoria" required></label>
+                <br><br>
+                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevaCategoria()">
+                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarCategorias()">
+            </fieldset>
+        </div>
+        <br>
+        <!-- Editar Categoria -->
+        <div class="datos" id="editarCategoria">
+            <fieldset>
+                <legend><strong>Editar Finca</strong></legend>
+                <label>Id: <br>
+                    <input type="number" id="idEditarCategoria" disabled></label> <br>
+                <label>Name: <br>
+                    <input type="text" id="nameEditarCategoria" required placeholder=""></label> <br>
+                <label>Description: <br>
+                    <input type="text" id="descriptionEditarCategoria" required></label>
+                <br><br>
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCategoria()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
+            </fieldset>
+        </div>
+
+
+        <!-- Nuevo Cliente -->
+        <div class="datos" id="nuevoCliente">
+            <fieldset>
+                <legend><strong>Nuevo Cliente</strong></legend>
+                <label>Name: <br>
+                    <input type="text" id="nameNuevoCliente" required></label> <br>
+                <label>Email: <br>
+                    <input type="text" id="emailNuevoCliente" required></label> <br>
+                <label>age: <br>
+                    <input type="number" id="ageNuevoCliente" required></label> <br>
+                <label>Password: <br>
+                    <input type="password" id="passwordNuevoCliente" required></label> <br>
+                <br><br>
+                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevoCliente()">
+                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarClientes()">
+            </fieldset>
+        </div>
+        <br>
+        <!-- Editar Cliente -->
+        <div class="datos" id="editarCliente">
+            <fieldset>
+                <legend><strong>Editar Cliente</strong></legend>
+                <label>Id: <br>
+                    <input type="number" id="idCliente" disabled></label> <br>
+                <label>Name: <br>
+                    <input type="text" id="nameEditarCliente" required></label> <br>
+                <label>Email: <br>
+                    <input type="text" id="emailEditarCliente" required></label> <br>
+                <label>age: <br>
+                    <input type="number" id="ageEditarCliente" required></label> <br>
+                <label>Password: <br>
+                    <input type="password" id="passwordEditarCliente" required></label> <br>
+                <br><br>
+                <input type="submit" name="Guardar" value="Guardar" onclick="editarCliente()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarClientes()">
+            </fieldset>
+        </div>
+
+        <!-- Nuevo Mensaje -->
+        <div class="datos" id="nuevoMensaje">
+            <fieldset id="formNueva">
+                <legend><strong>Nueva Mensaje</strong></legend>
+                <label>Mensaje: <br>
+                    <input type="text" id="nuevoMessageMensaje" required></label> <br>
+                <label>Cliente: <br>
+                    <input type="text" id="nuevoClientMensaje" required></label> <br>
+                <label>Finca: <br>
+                    <input type="text" id="nuevoFarmMensaje" required></label> <br>
+                <br> <br>
+                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevoMensaje()">
+                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarMensajes()">
+            </fieldset>
+        </div>
+        <br>
+        <!-- Editar Mensaje -->
+        <div class="datos" id="editarMensaje">
+            <fieldset>
+                <legend><strong>Editar Mensaje</strong></legend>
+                <label>Id: <br>
+                    <input type="number" id="idMensaje" disabled></label> <br>
+                <label>Mensaje: <br>
+                    <input type="text" id="editarMessageMensaje" required></label> <br>
+                <label>Cliente: <br>
+                    <input type="text" id="editarClientMensaje" disabled required></label> <br>
+                <label>Finca: <br>
+                    <input type="text" id="editarFarmMensaje"  disabled required></label> <br>
+                <br><br>
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarMensaje()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarMensajes()">
+            </fieldset>
+        </div>
+
+        <!-- Nueva Reserva -->
+        <div class="datos" id="nuevaReservacion">
+            <fieldset>
+                <legend><strong>Nueva Reserva</strong></legend>
+                <!-- <label>Id: <br>
+                <input type="number" id="idNueva" required></label> <br> -->
+                <label>Inicio Reserva: <br>
+                    <input type="date" id="reservaStartDateNueva" required></label> <br>
+                <label>Fin Reserva: <br>
+                    <input type="date" id="reservaEndDateNueva" required></label> <br>
+                <label>Cliente: <br>
+                    <input type="number" id="reservaClientNueva" required></label> <br>
+                <label>Finca: <br>
+                    <input type="text" id="reservaFincaNueva" required></label>
+                <br><br>
+                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevaReservacion()">
+                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarReservaciones()">
+            </fieldset>
+        </div>
+        <br>
+        <!-- Editar Reserva -->
+        <div class="datos" id="editarReservacion">
+            <fieldset>
+                <legend><strong>Editar Reserva</strong></legend>
+                <label>Id: <br>
+                    <input type="number" id="idReserva" disabled></label> <br>
+                <label>Inicio Reserva: <br>
+                    <input type="date" id="reservaStartDateEditar" required></label> <br>
+                <label>Fin Reserva: <br>
+                    <input type="date" id="reservaEndDateEditar" required></label> <br>
+                <label>Cliente: <br>
+                    <input type="number" id="reservaClientEditar" required></label> <br>
+                <label>Finca: <br>
+                    <input type="text" id="reservaFincaEditar" required></label>
+                <br><br>
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarReservacion()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarReservas()">
+            </fieldset>
+        </div>
+
+
+        </div>
+    </article>
+    <footer class="footer">
+        <address>
+            <p>Juan Camilo Acevedo Moreno</p>
+            <p><a href="mailto:juan.acevedo1.mt@correo.usa.edu.co">juan.acevedo1.mt@correo.usa.edu.co</a></p>
+            <p>MisionTic 2021</p>
+        </address>
+    </footer>
+</body>
+
+</html>
