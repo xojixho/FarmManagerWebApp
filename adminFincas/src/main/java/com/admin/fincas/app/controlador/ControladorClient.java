@@ -56,7 +56,7 @@ public class ControladorClient {
     }
     
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO.CONTENT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int idClient){
         return servicio.deleteClient(idClient);
     }
