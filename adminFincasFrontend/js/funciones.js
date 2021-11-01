@@ -1220,7 +1220,6 @@ function borrarReservacion(codigo) {
     let dato = {
         idReservation: codigo
     }
-
     let datoBorrar = JSON.stringify(dato);
     $.ajax({
         url: "http://129.151.121.31:8080/api/Reservation/" + codigo,
