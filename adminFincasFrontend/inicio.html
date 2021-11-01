@@ -37,7 +37,7 @@
     </aside>
     <article class="main">
         <div id="imagen-inicial"><img src="img/imagenInicial.png" alt=""></div>
-        <!-- <h3 id="bienvenido">Bienvenido</h3> -->
+        <h3 id="bienvenido">Bienvenido</h3>
 
         <div id="info">
             <!-- Titulo -->
@@ -116,7 +116,7 @@
             </fieldset>
         </div>
         <br>
-        <!-- Editar Finca -->
+        <!-- Editar Categoria -->
         <div class="datos" id="editarCategoria">
             <fieldset>
                 <legend><strong>Editar Finca</strong></legend>
@@ -155,6 +155,8 @@
         <div class="datos" id="editarCliente">
             <fieldset>
                 <legend><strong>Editar Cliente</strong></legend>
+                <label>Id: <br>
+                    <input type="number" id="idCliente" disabled></label> <br>
                 <label>Name: <br>
                     <input type="text" id="nameEditarCliente" required></label> <br>
                 <label>Email: <br>
@@ -162,10 +164,10 @@
                 <label>age: <br>
                     <input type="number" id="ageEditarCliente" required></label> <br>
                 <label>Password: <br>
-                    <input type="text" id="PasswordEditarCliente" required></label> <br>
+                    <input type="password" id="passwordEditarCliente" required></label> <br>
                 <br><br>
-                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCategoria()">
-                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
+                <input type="submit" name="Guardar" value="Guardar" onclick="editarCliente()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarClientes()">
             </fieldset>
         </div>
 
@@ -175,10 +177,10 @@
                 <legend><strong>Nueva Mensaje</strong></legend>
                 <label>Mensaje: <br>
                     <input type="text" id="nuevoMessageMensaje" required></label> <br>
-                    <label>Cliente: <br>
-                        <input type="text" id="nuevoClientMensaje" required></label> <br>
-                        <label>Finca: <br>
-                            <input type="text" id="nuevoFarmMensaje" required></label> <br>
+                <label>Cliente: <br>
+                    <input type="text" id="nuevoClientMensaje" required></label> <br>
+                <label>Finca: <br>
+                    <input type="text" id="nuevoFarmMensaje" required></label> <br>
                 <br> <br>
                 <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevoMensaje()">
                 <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarMensajes()">
@@ -189,15 +191,17 @@
         <div class="datos" id="editarMensaje">
             <fieldset>
                 <legend><strong>Editar Mensaje</strong></legend>
+                <label>Id: <br>
+                    <input type="number" id="idMensaje" disabled></label> <br>
                 <label>Mensaje: <br>
-                    <input type="text" id="editarMessageMensaje" required></label>
-                    <label>Cliente: <br>
-                        <input type="text" id="editarClientMensaje" required></label> <br>
-                        <label>Finca: <br>
-                            <input type="text" id="editarFarmMensaje" required></label> <br>
+                    <input type="text" id="editarMessageMensaje" required></label> <br>
+                <label>Cliente: <br>
+                    <input type="text" id="editarClientMensaje" disabled required></label> <br>
+                <label>Finca: <br>
+                    <input type="text" id="editarFarmMensaje"  disabled required></label> <br>
                 <br><br>
-                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCategoria()">
-                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarMensaje()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarMensajes()">
             </fieldset>
         </div>
 
@@ -225,16 +229,18 @@
         <div class="datos" id="editarReservacion">
             <fieldset>
                 <legend><strong>Editar Reserva</strong></legend>
+                <label>Id: <br>
+                    <input type="number" id="idReserva" disabled></label> <br>
                 <label>Inicio Reserva: <br>
-                    <input type="text" id="reservaStartDateEditar" required></label> <br>
+                    <input type="date" id="reservaStartDateEditar" required></label> <br>
                 <label>Fin Reserva: <br>
-                    <input type="number" id="reservaEndDateEditar" required></label> <br>
+                    <input type="date" id="reservaEndDateEditar" required></label> <br>
                 <label>Cliente: <br>
                     <input type="number" id="reservaClientEditar" required></label> <br>
                 <label>Finca: <br>
                     <input type="text" id="reservaFincaEditar" required></label>
                 <br><br>
-                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarReserva()">
+                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarReservacion()">
                 <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarReservas()">
             </fieldset>
         </div>
