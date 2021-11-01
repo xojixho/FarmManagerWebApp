@@ -1,7 +1,13 @@
 package com.admin.fincas.app.servicio;
 
+import com.admin.fincas.app.Report.ClientCounter;
+import com.admin.fincas.app.Report.StatusReservation;
 import com.admin.fincas.app.modelo.Reservation;
 import com.admin.fincas.app.repositorio.RepositorioReservation;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +74,37 @@ public class ServiciosReservation {
             return true;
         }).orElse(false);
         return aBoolean;
+    }
+    
+    public StatusReservation reporteStatusServicio(){
+        List<Reservation> completed = crud4.reservacionStatusRepositorio("completed");
+        List<Reservation> cancelled = crud4.reservacionStatusRepositorio("cancelled");
+        
+        return new StatusReservation(completed.size(), cancelled.size());
+    }
+    
+    public List<Reservation> reporteTiempoServicio(String datoA, String datoB){
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        
+        Date datoUno = new Date();
+        Date datoDos = new Date();
+        
+        try{
+            datoUno = parser.parse(datoA);
+            datoDos = parser.parse(datoB);
+        }catch(ParseException evento){
+            evento.printStackTrace();
+        }
+        if(datoUno.before(datoDos)){
+            return crud4.reservacionTiempoRepositorio(datoUno, datoDos);
+        }else{
+            return new ArrayList<>();
+        }
+        
+    }
+    
+    public List<ClientCounter> reporteClientesServicio(){
+        return crud4.getClientesRepositorio();
     }
     
 }

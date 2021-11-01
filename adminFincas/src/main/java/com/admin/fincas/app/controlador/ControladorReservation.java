@@ -1,5 +1,7 @@
 package com.admin.fincas.app.controlador;
 
+import com.admin.fincas.app.Report.ClientCounter;
+import com.admin.fincas.app.Report.StatusReservation;
 import com.admin.fincas.app.modelo.Reservation;
 import com.admin.fincas.app.servicio.ServiciosReservation;
 import java.util.List;
@@ -55,6 +57,23 @@ public class ControladorReservation {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int idReservation) {
         return servicio.deleteReservation(idReservation);
+    }
+    
+    @GetMapping("/report-status")
+    public StatusReservation getReservas(){
+        return servicio.reporteStatusServicio();
+    }
+    
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservasTiempo(
+            @PathVariable("dateOne") String dateOne,
+            @PathVariable("dateTwo") String dateTwo){
+        return servicio.reporteTiempoServicio(dateOne, dateOne);
+    }
+    
+    @GetMapping("/report-clients")
+    public List<ClientCounter> getClientes(){
+        return servicio.reporteClientesServicio();
     }
     
 }

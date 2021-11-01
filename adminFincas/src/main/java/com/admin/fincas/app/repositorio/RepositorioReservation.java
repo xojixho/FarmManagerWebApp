@@ -4,8 +4,12 @@
  */
 package com.admin.fincas.app.repositorio;
 
+import com.admin.fincas.app.Report.ClientCounter;
 import com.admin.fincas.app.interfaces.InterfaceReservation;
+import com.admin.fincas.app.modelo.Client;
 import com.admin.fincas.app.modelo.Reservation;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +38,20 @@ public class RepositorioReservation {
         metodoCrud4.delete(reservation);
     }
     
+    public List<Reservation> reservacionStatusRepositorio(String status){
+        return metodoCrud4.findAllByStatus(status);
+    }
+    
+    public List<Reservation> reservacionTiempoRepositorio(Date a, Date b){
+        return metodoCrud4.findAllByStartDateAfterAndStartDateBefore(a, b);
+    }
+    
+    public List<ClientCounter> getClientesRepositorio(){
+        List<ClientCounter> lista = new ArrayList<>();
+        List<Object[]> respuesta = metodoCrud4.countTotalReservationsByClient();
+        for(int i=0; i<respuesta.size(); i++){
+            lista.add(new ClientCounter((Long) respuesta.get(i)[1], (Client) respuesta.get(i)[0]));
+        }
+        return lista;
+    }    
 }
