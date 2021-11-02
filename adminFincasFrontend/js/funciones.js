@@ -1292,7 +1292,7 @@ function mostrarReportes() {
     $("#reportes").show();
 }
 
-function traerReporteStatus() {
+function crearReporteStatus() {
     $.ajax({
         url: "http://129.151.121.31:8080/api/Reservation/report-status",
         type: "GET",

@@ -44,18 +44,18 @@
         <div id="info">
             <!-- Titulo -->
             <h1 id="titulo"></h1>
-                
-                <!-- Mensajes de estado -->
-                <div id="mensaje"></div>
-                <br>
-                <div>
-                    <!-- Boton Ingresar nuevo-->
-                    <button id="btnNuevo" onclick=""></button>
-                </div>
-                <br>
-                <!-- Tabla -->
-                <div class="datos" id="tabla"></div>
-                <br>
+
+            <!-- Mensajes de estado -->
+            <div id="mensaje"></div>
+            <br>
+            <div>
+                <!-- Boton Ingresar nuevo-->
+                <button id="btnNuevo" onclick=""></button>
+            </div>
+            <br>
+            <!-- Tabla -->
+            <div class="datos" id="tabla"></div>
+            <br>
 
 
         </div>
@@ -252,22 +252,19 @@
 
             <div id="reporteStatus">
                 <label for="btnReporteStatus"> Status de las reservas: <br>
-                    <button name="btnReporteStatus" id="btnReporteStatus" onclick="crearReporteStatus()">Generar
-                        Reporte</button></label><br>
+                    <button id="btnReporteStatus" onclick="crearReporteStatus()">Generar Reporte</button></label><br>
                 <br><br>
             </div>
 
             <div id="reporteFechas">
                 <fieldset>
                     <legend><strong>Reservaciones por fecha</strong></legend>
-                    <label for="startdate"> Fecha de inicio:
-                        <input id="datoStartDate" name="startdate" type="date" placeholder="Fecha inicio"></label><br>
-                    <label for="devolutionDate">Fecha de entrega:
-                        <input id="datoDevolutionDate" name="devolutionDate" type="date"
-                            placeholder="Fecha devolucion"></label><br>
+                    <label for="datoStartdate"> Fecha de inicio:
+                        <input id="datoStartDate" type="date"></label><br>
+                    <label for="datoDevolutionDate">Fecha de entrega:
+                        <input id="datoDevolutionDate" type="date"></label><br>
                     <br>
                     <button onclick="crearReporteFechas()">Generar reporte</button>
-                    <div id="resultadoDate"></div>
                 </fieldset>
             </div>
 
