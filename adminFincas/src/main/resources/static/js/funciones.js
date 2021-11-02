@@ -138,6 +138,7 @@ function borrarCategoria(codigo) {
     let datoBorrar = JSON.stringify(datos);
 
     $.ajax({
+
         url: "http://129.151.121.31:8080/api/Category/" + codigo,
         data: datoBorrar,
         type: "DELETE",
@@ -1219,8 +1220,7 @@ function editarReservacion() {
 function borrarReservacion(codigo) {
     let dato = {
         idReservation: codigo
-    };
-
+    }
     let datoBorrar = JSON.stringify(dato);
     $.ajax({
         url: "http://129.151.121.31:8080/api/Reservation/" + codigo,
@@ -1254,6 +1254,7 @@ function formularioEditarReservacion(id, i) {
 
     /* 
 
+    Falta!
     llenar selectores
     
     
@@ -1275,7 +1276,7 @@ function validarNuevaReserva() {
 
 // Validar formulario editar
 function validarEditarReservacion() {
-    
+
     return true;
 }
 
@@ -1291,7 +1292,7 @@ function mostrarReportes() {
     $("#reportes").show();
 }
 
-function crearReporteStatus() {
+function traerReporteStatus() {
     $.ajax({
         url: "http://129.151.121.31:8080/api/Reservation/report-status",
         type: "GET",
