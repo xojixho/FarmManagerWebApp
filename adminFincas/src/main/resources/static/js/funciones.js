@@ -42,24 +42,24 @@ function mostrarCategorias() {
     $("#btnNuevo").html("Nueva Categoria");
     $("#btnNuevo").show();
     $.ajax(
-        {
-            url: "http://129.151.121.31:8080/api/Category/all/",
-            type: "GET",
-            dataType: "JSON",
-            success: function (respuesta) {
-                console.log(respuesta);
-                llenarTablaCategoria(respuesta);
-            },
-            error: function (xhr, status) {
-                $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
-                $("#mensaje").hide(3000);
-            },
-            complete: function (xhr, status) {
-                $("#mensaje").html("Obteniendo listado de Mensaje. Status: " + status);
-                $("#mensaje").hide(3000);
+            {
+                url: "http://129.151.121.31:8080/api/Category/all/",
+                type: "GET",
+                dataType: "JSON",
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    llenarTablaCategoria(respuesta);
+                },
+                error: function (xhr, status) {
+                    $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
+                    $("#mensaje").hide(3000);
+                },
+                complete: function (xhr, status) {
+                    $("#mensaje").html("Obteniendo listado de Mensaje. Status: " + status);
+                    $("#mensaje").hide(3000);
+                }
             }
-        }
-    )
+    );
 
 }
 
@@ -69,7 +69,7 @@ function nuevaCategoria() {
     let data = {
         name: $("#nameNuevaCategoria").val(),
         description: $("#descriptionNuevaCategoria").val()
-    }
+    };
 
     if (validarNuevaCategoria()) {
         $.ajax({
@@ -102,7 +102,7 @@ function editarCategoria() {
         id: $("#idEditarCategoria").val(),
         name: $("#nameEditarCategoria").val(),
         description: $("#descriptionEditarCategoria").val()
-    }
+    };
     console.log(dataPut);
     if (validarEditarCategoria()) {
         $.ajax({
@@ -134,7 +134,7 @@ function editarCategoria() {
 function borrarCategoria(codigo) {
     let datos = {
         category: codigo
-    }
+    };
     let datoBorrar = JSON.stringify(datos);
 
     $.ajax({
@@ -243,12 +243,12 @@ function limpiarCamposEditarCategoria() {
 }
 
 /* -----------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------- */
+ -------------------------------------------------------------------------------------------------------------- */
 
 /* Finca */
 
 /* -----------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------- */
+ -------------------------------------------------------------------------------------------------------------- */
 
 /* Tabla Finca  */
 
@@ -294,24 +294,24 @@ function mostrarFincas() {
     $("#btnNuevo").html("Nueva Finca");
     $("#btnNuevo").show();
     $.ajax(
-        {
-            url: "http://129.151.121.31:8080/api/Farm/all/",
-            type: "GET",
-            dataType: "JSON",
-            success: function (respuesta) {
-                console.log(respuesta);
-                llenarTablaFincas(respuesta);
-            },
-            error: function (xhr, status) {
-                $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
-                $("#mensaje").hide(3000);
-            },
-            complete: function (xhr, status) {
-                $("#mensaje").html("Obteniendo listado de fincas. Status: " + status);
-                $("#mensaje").hide(3000);
+            {
+                url: "http://129.151.121.31:8080/api/Farm/all/",
+                type: "GET",
+                dataType: "JSON",
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    llenarTablaFincas(respuesta);
+                },
+                error: function (xhr, status) {
+                    $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
+                    $("#mensaje").hide(3000);
+                },
+                complete: function (xhr, status) {
+                    $("#mensaje").html("Obteniendo listado de fincas. Status: " + status);
+                    $("#mensaje").hide(3000);
+                }
             }
-        }
-    )
+    );
 
 }
 
@@ -321,10 +321,10 @@ function nuevaFinca() {
     let data = {
         address: $("#addressNueva").val(),
         extension: $("#extensionNueva").val(),
-        category: { id: $("#category_idNueva").val() },
+        category: {id: $("#category_idNueva").val()},
         name: $("#nameNueva").val(),
         description: $("#descriptionNueva").val()
-    }
+    };
 
     if (validarNuevo()) {
         $.ajax({
@@ -359,7 +359,7 @@ function editarFinca() {
         name: $("#nameEditar").val(),
         extension: $("#extensionEditar").val(),
         description: $("#descriptionEditar").val()
-    }
+    };
     console.log(dataPut);
     if (validarEditar()) {
         $.ajax({
@@ -476,7 +476,7 @@ function limpiarCamposEditar() {
 /* Validaciones Finca */
 
 function validarVacio(dato) {
-    return dato == "";
+    return dato === "";
 }
 // Validar formulario nuevo
 function validarNuevo() {
@@ -561,12 +561,12 @@ function validarEditar() {
 }
 
 /* -----------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------- */
+ -------------------------------------------------------------------------------------------------------------- */
 
 /* Clientes */
 
 /* -----------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------- */
+ -------------------------------------------------------------------------------------------------------------- */
 
 function llenarTablaClientes(items) {
     $("#tabla").html("");
@@ -609,24 +609,24 @@ function mostrarClientes() {
     $("#btnNuevo").html("Nuevo Cliente");
     $("#btnNuevo").show();
     $.ajax(
-        {
-            url: "http://129.151.121.31:8080/api/Client/all/",
-            type: "GET",
-            dataType: "JSON",
-            success: function (respuesta) {
-                console.log(respuesta);
-                llenarTablaClientes(respuesta);
-            },
-            error: function (xhr, status) {
-                $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
-                $("#mensaje").hide(3000);
-            },
-            complete: function (xhr, status) {
-                $("#mensaje").html("Obteniendo listado de Clientes. Status: " + status);
-                $("#mensaje").hide(3000);
+            {
+                url: "http://129.151.121.31:8080/api/Client/all/",
+                type: "GET",
+                dataType: "JSON",
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    llenarTablaClientes(respuesta);
+                },
+                error: function (xhr, status) {
+                    $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
+                    $("#mensaje").hide(3000);
+                },
+                complete: function (xhr, status) {
+                    $("#mensaje").html("Obteniendo listado de Clientes. Status: " + status);
+                    $("#mensaje").hide(3000);
+                }
             }
-        }
-    )
+    );
 
 }
 
@@ -673,7 +673,7 @@ function editarCliente() {
         age: $("#ageEditarCliente").val(),
         email: $("#emailEditarCliente").val(),
         password: $("#passwordEditarCliente").val()
-    }
+    };
     console.log(dataPut);
     if (validarEditarCliente()) {
         $.ajax({
@@ -705,7 +705,7 @@ function editarCliente() {
 function borrarCliente(codigo) {
     let datos = {
         idClient: codigo
-    }
+    };
 
     let datoBorrar = JSON.stringify(datos);
     $.ajax({
@@ -855,10 +855,10 @@ function validarEditarCliente() {
 }
 
 /* -----------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------- */
+ -------------------------------------------------------------------------------------------------------------- */
 /* Mensajes */
 /* -----------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------- */
+ -------------------------------------------------------------------------------------------------------------- */
 
 function llenarTablaMensaje(items) {
     $("#tabla").html("");
@@ -899,24 +899,24 @@ function mostrarMensajes() {
     $("#btnNuevo").html("Nuevo Mensaje");
     $("#btnNuevo").show();
     $.ajax(
-        {
-            url: "http://129.151.121.31:8080/api/Message/all/",
-            type: "GET",
-            dataType: "JSON",
-            success: function (respuesta) {
-                console.log(respuesta);
-                llenarTablaMensaje(respuesta);
-            },
-            error: function (xhr, status) {
-                $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
-                $("#mensaje").hide(3000);
-            },
-            complete: function (xhr, status) {
-                $("#mensaje").html("Obteniendo listado de Mensaje. Status: " + status);
-                $("#mensaje").hide(3000);
+            {
+                url: "http://129.151.121.31:8080/api/Message/all/",
+                type: "GET",
+                dataType: "JSON",
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    llenarTablaMensaje(respuesta);
+                },
+                error: function (xhr, status) {
+                    $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
+                    $("#mensaje").hide(3000);
+                },
+                complete: function (xhr, status) {
+                    $("#mensaje").html("Obteniendo listado de Mensaje. Status: " + status);
+                    $("#mensaje").hide(3000);
+                }
             }
-        }
-    )
+    );
 
 }
 
@@ -925,8 +925,8 @@ function mostrarMensajes() {
 function nuevoMensaje() {
     let data = {
         messageText: $("#nuevoMessageMensaje").val(),
-        client: { idClient: $("#nuevoClientMensaje").val() },
-        farm: { id: $("#nuevoFarmMensaje").val() }
+        client: {idClient: $("#nuevoClientMensaje").val()},
+        farm: {id: $("#nuevoFarmMensaje").val()}
     };
 
     if (validarNuevoMensaje()) {
@@ -990,7 +990,7 @@ function editarMensaje() {
 function borrarMensaje(codigo) {
     let datos = {
         idMessage: codigo
-    }
+    };
 
     let datoBorrar = JSON.stringify(datos);
     $.ajax({
@@ -1124,24 +1124,24 @@ function mostrarReservaciones() {
     $("#btnNuevo").html("Nueva Reservacion");
     $("#btnNuevo").show();
     $.ajax(
-        {
-            url: "http://129.151.121.31:8080/api/Reservation/all/",
-            type: "GET",
-            dataType: "JSON",
-            success: function (respuesta) {
-                console.log(respuesta);
-                llenarTablaReservaciones(respuesta);
-            },
-            error: function (xhr, status) {
-                $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
-                $("#mensaje").hide(3000);
-            },
-            complete: function (xhr, status) {
-                $("#mensaje").html("Obteniendo listado de Reservaciones. Status: " + status);
-                $("#mensaje").hide(3000);
+            {
+                url: "http://129.151.121.31:8080/api/Reservation/all/",
+                type: "GET",
+                dataType: "JSON",
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    llenarTablaReservaciones(respuesta);
+                },
+                error: function (xhr, status) {
+                    $("#mensaje").html("Ocurrio un error al ejecutar la peticion. Status: " + status);
+                    $("#mensaje").hide(3000);
+                },
+                complete: function (xhr, status) {
+                    $("#mensaje").html("Obteniendo listado de Reservaciones. Status: " + status);
+                    $("#mensaje").hide(3000);
+                }
             }
-        }
-    )
+    );
 
 }
 
@@ -1151,9 +1151,9 @@ function nuevaReservacion() {
     let data = {
         startDate: $("#reservaStartDateNueva").val(),
         devolutionDate: $("#reservaEndDateNueva").val(),
-        client: { idClient: $("#reservaClientNueva").val() },
-        farm: { id: $("#reservaFincaNueva").val() }
-    }
+        client: {idClient: $("#reservaClientNueva").val()},
+        farm: {id: $("#reservaFincaNueva").val()}
+    };
 
     if (validarNuevaReserva()) {
         $.ajax({
@@ -1186,8 +1186,8 @@ function editarReservacion() {
         idReservation: $("#idReserva").val(),
         startDate: $("#reservaStartDateEditar").val(),
         devolutionDate: $("#reservaEndDateEditar").val(),
-        client: { id: $("#reservaClientEditar").val() },
-        farm: { id: $("#reservaFincaEditar").val() }
+        client: {id: $("#reservaClientEditar").val()},
+        farm: {id: $("#reservaFincaEditar").val()}
     };
     console.log(dataPut);
     if (validarEditarReservacion()) {
@@ -1220,7 +1220,7 @@ function editarReservacion() {
 function borrarReservacion(codigo) {
     let dato = {
         idReservation: codigo
-    }
+    };
     let datoBorrar = JSON.stringify(dato);
     $.ajax({
         url: "http://129.151.121.31:8080/api/Reservation/" + codigo,
@@ -1253,12 +1253,12 @@ function formularioEditarReservacion(id, i) {
     document.getElementById("idReserva").value = id;
 
     /* 
-
-    Falta!
-    llenar selectores
-    
-    
-    */
+     
+     Falta!
+     llenar selectores
+     
+     
+     */
 
     $("#editarReservacion").show(500);
     $("#btnNuevo").hide(500);
@@ -1304,7 +1304,7 @@ function crearReporteStatus() {
     });
 }
 
-function llenarTablaReporteStatus() {
+function llenarTablaReporteStatus(respuesta) {
     $("#tabla").html("");
     let myTable = "<table>";
     myTable += "<tr>";
@@ -1318,7 +1318,7 @@ function llenarTablaReporteStatus() {
 }
 
 function crearReporteFechas() {
-    
+
     var startDate = document.getElementById("datoStartDate").value;
     var endDate = document.getElementById("datoDevolutionDate").value;
     console.log(startDate);
@@ -1335,10 +1335,10 @@ function crearReporteFechas() {
     });
 }
 
-function llenarTablaReporteFechas() {
+function llenarTablaReporteFechas(respuesta) {
     $("#tabla").html("");
     let myTable = "<table>";
-        myTable += "<tr>";
+    myTable += "<tr>";
 
     for (i = 0; i < respuesta.length; i++) {
         myTable += "<th>total</th>";
@@ -1352,32 +1352,32 @@ function llenarTablaReporteFechas() {
 
 }
 
-function crearReporteClientes(){
+function crearReporteClientes() {
     $.ajax({
-        url:"http://129.151.121.31:8080/api/Reservation/report-clients",
-        type:"GET",
-        datatype:"JSON",
-        success:function(respuesta){
+        url: "http://129.151.121.31:8080/api/Reservation/report-clients",
+        type: "GET",
+        datatype: "JSON",
+        success: function (respuesta) {
             console.log(respuesta);
             llenarTablaReporteClientes(respuesta);
         }
     });
 }
 
-function llenarTablaReporteClientes(respuesta){
+function llenarTablaReporteClientes(respuesta) {
     $("#tabla").html("");
-    let myTable="<table>";
-        myTable+="<tr>";
-      
-    for(i=0;i<respuesta.length;i++){
-    myTable+="<th>total</th>";
-        myTable+="<td>"+respuesta[i].total+"</td>";
-        myTable+="<td>"+respuesta[i].client.name+"</td>";
-        myTable+="<td>"+respuesta[i].client.email+"</td>";
-        myTable+="<td>"+respuesta[i].client.age+"</td>";
-      
-        myTable+="</tr>";
+    let myTable = "<table>";
+    myTable += "<tr>";
+
+    for (i = 0; i < respuesta.length; i++) {
+        myTable += "<th>total</th>";
+        myTable += "<td>" + respuesta[i].total + "</td>";
+        myTable += "<td>" + respuesta[i].client.name + "</td>";
+        myTable += "<td>" + respuesta[i].client.email + "</td>";
+        myTable += "<td>" + respuesta[i].client.age + "</td>";
+
+        myTable += "</tr>";
     }
-    myTable+="</table>";
+    myTable += "</table>";
     $("#tabla").html(myTable);
 }
