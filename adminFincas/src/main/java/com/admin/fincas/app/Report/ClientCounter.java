@@ -13,11 +13,11 @@ import com.admin.fincas.app.modelo.Client;
 public class ClientCounter {
     
     private Long total;
-    private Client cliente;
+    private Client client;
     
     public ClientCounter(Long total, Client cliente){
         this.total = total;
-        this.cliente = cliente;
+        this.client = cliente;
     }
 
     public Long getTotal() {
@@ -28,12 +28,12 @@ public class ClientCounter {
         this.total = total;
     }
 
-    public Client getCliente() {
-        return cliente;
+    public Client getClient() {
+        return client;
     }
 
-    public void setCliente(Client cliente) {
-        this.cliente = cliente;
+    public void setClient(Client client) {
+        this.client = client;
     }
     
     
