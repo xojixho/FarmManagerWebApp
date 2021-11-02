@@ -1292,7 +1292,7 @@ function mostrarReportes() {
     $("#reportes").show();
 }
 
-function traerReporteStatus() {
+function crearReporteStatus() {
     $.ajax({
         url: "http://129.151.121.31:8080/api/Reservation/report-status",
         type: "GET",
@@ -1319,7 +1319,7 @@ function llenarTablaReporteStatus() {
 
 function crearReporteFechas() {
     
-    var startDate = document.getElementById("datoStarDate").value;
+    var startDate = document.getElementById("datoStartDate").value;
     var endDate = document.getElementById("datoDevolutionDate").value;
     console.log(startDate);
     console.log(endDate);
