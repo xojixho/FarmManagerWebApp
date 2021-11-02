@@ -138,11 +138,8 @@ function borrarCategoria(codigo) {
     let datoBorrar = JSON.stringify(datos);
 
     $.ajax({
-<<<<<<< HEAD
-        url: "http://129.151.121.31/api/Category/"+codigo,
-=======
+
         url: "http://129.151.121.31:8080/api/Category/" + codigo,
->>>>>>> c217c12eff67795e4d2ab9b9d0509e1d77dd39d7
         data: datoBorrar,
         type: "DELETE",
         contentType: "application/JSON",
@@ -1257,6 +1254,7 @@ function formularioEditarReservacion(id, i) {
 
     /* 
 
+    Falta!
     llenar selectores
     
     
@@ -1278,6 +1276,108 @@ function validarNuevaReserva() {
 
 // Validar formulario editar
 function validarEditarReservacion() {
-    
+
     return true;
+}
+
+
+/* Reportes */
+
+function mostrarReportes() {
+
+    $("#imagen-inicial").hide();
+    $("#info").show();
+    $("#btnNuevo").hide();
+    $("#titulo").html("Reportes");
+    $("#reportes").show();
+}
+
+function traerReporteStatus() {
+    $.ajax({
+        url: "http://129.151.121.31:8080/api/Reservation/report-status",
+        type: "GET",
+        datatype: "JSON",
+        success: function (respuesta) {
+            console.log(respuesta);
+            llenarTablaReporteStatus(respuesta);
+        }
+    });
+}
+
+function llenarTablaReporteStatus() {
+    $("#tabla").html("");
+    let myTable = "<table>";
+    myTable += "<tr>";
+    myTable += "<th>completadas</th>";
+    myTable += "<td>" + respuesta.completed + "</td>";
+    myTable += "<th>canceladas</th>";
+    myTable += "<td>" + respuesta.cancelled + "</td>";
+    myTable += "</tr>";
+    myTable += "</table>";
+    $("#tabla").html(myTable);
+}
+
+function crearReporteFechas() {
+    
+    var startDate = document.getElementById("datoStarDate").value;
+    var endDate = document.getElementById("datoDevolutionDate").value;
+    console.log(startDate);
+    console.log(endDate);
+
+    $.ajax({
+        url: "http://129.151.121.31:8080/api/Reservation/report-dates/" + startDate + "/" + endDate,
+        type: "GET",
+        datatype: "JSON",
+        success: function (respuesta) {
+            console.log(respuesta);
+            llenarTablaReporteFechas(respuesta);
+        }
+    });
+}
+
+function llenarTablaReporteFechas() {
+    $("#tabla").html("");
+    let myTable = "<table>";
+        myTable += "<tr>";
+
+    for (i = 0; i < respuesta.length; i++) {
+        myTable += "<th>total</th>";
+        myTable += "<td>" + respuesta[i].devolutionDate + "</td>";
+        myTable += "<td>" + respuesta[i].startDate + "</td>";
+        myTable += "<td>" + respuesta[i].status + "</td>";
+        myTable += "</tr>";
+    }
+    myTable += "</table>";
+    $("#tabla").html(myTable);
+
+}
+
+function crearReporteClientes(){
+    $.ajax({
+        url:"http://129.151.121.31:8080/api/Reservation/report-clients",
+        type:"GET",
+        datatype:"JSON",
+        success:function(respuesta){
+            console.log(respuesta);
+            llenarTablaReporteClientes(respuesta);
+        }
+    });
+}
+
+function llenarTablaReporteClientes(respuesta){
+    $("#tabla").html("");
+    let myTable="<table>";
+        myTable+="<tr>";
+      
+    for(i=0;i<respuesta.length;i++){
+    myTable+="<th>total</th>";
+        myTable+="<td>"+respuesta[i].total+"</td>";
+        myTable+="<td>"+respuesta[i].client.name+"</td>";
+        myTable+="<td>"+respuesta[i].client.email+"</td>";
+        myTable+="<td>"+respuesta[i].client.age+"</td>";
+      
+        myTable+="</tr>";
+    }
+    myTable+="</table>";
+    $("#tabla").html(myTable);
 }
