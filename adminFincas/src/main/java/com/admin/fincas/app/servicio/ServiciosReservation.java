@@ -15,22 +15,35 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author camil
+ * @author camilo
  */
 @Service
 public class ServiciosReservation {
     
      @Autowired
     private RepositorioReservation crud4;
-
+     
+     /**
+      * 
+      * @return Lista con reservaciones
+      */
     public List<Reservation> getAll(){
         return crud4.getAll();
     }
-
+    /**
+     * 
+     * @param reservationId
+     * @return Optional con reservacion 
+     */
     public Optional<Reservation> getReservation(int reservationId) {
         return crud4.getReservation(reservationId);
     }
-
+    
+    /**
+     * 
+     * @param reservation
+     * @return nueva reservacion
+     */
     public Reservation save(Reservation reservation){
         if(reservation.getIdReservation()==null){
             return crud4.save(reservation);
@@ -43,7 +56,12 @@ public class ServiciosReservation {
             }
         }
     }
-
+    
+    /**
+     * 
+     * @param reservation
+     * @return reserva actualizada
+     */
     public Reservation update(Reservation reservation){
         if(reservation.getIdReservation()!=null){
             Optional<Reservation> list= crud4.getReservation(reservation.getIdReservation());
@@ -67,7 +85,12 @@ public class ServiciosReservation {
             return reservation;
         }
     }
-
+    
+    /**
+     * 
+     * @param reservationId
+     * @return boolean de borrado
+     */
     public boolean deleteReservation(int reservationId) {
         Boolean aBoolean = getReservation(reservationId).map(reservation -> {
             crud4.delete(reservation);
@@ -76,6 +99,10 @@ public class ServiciosReservation {
         return aBoolean;
     }
     
+    /**
+     * 
+     * @return reporte status servicio
+     */
     public StatusReservation reporteStatusServicio(){
         List<Reservation> completed = crud4.reservacionStatusRepositorio("completed");
         List<Reservation> cancelled = crud4.reservacionStatusRepositorio("cancelled");
@@ -83,6 +110,12 @@ public class ServiciosReservation {
         return new StatusReservation(completed.size(), cancelled.size());
     }
     
+    /**
+     * 
+     * @param datoA fecha inicio reserva
+     * @param datoB fecha fin reserva
+     * @return Lista reservas por fecha
+     */
     public List<Reservation> reporteTiempoServicio(String datoA, String datoB){
         SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
         
@@ -103,6 +136,10 @@ public class ServiciosReservation {
         
     }
     
+    /**
+     * 
+     * @return lista clientes por servicio
+     */
     public List<ClientCounter> reporteClientesServicio(){
         return crud4.getClientesRepositorio();
     }
