@@ -1310,11 +1310,14 @@ function llenarTablaReporteStatus(respuesta) {
     myTable += "<tr>";
     myTable += "<th>completadas</th>";
     myTable += "<td>" + respuesta.completed + "</td>";
+    myTable += "</tr>";
+    myTable += "<tr>";
     myTable += "<th>canceladas</th>";
     myTable += "<td>" + respuesta.cancelled + "</td>";
     myTable += "</tr>";
     myTable += "</table>";
     $("#tabla").html(myTable);
+    $("#tabla").show();
 }
 
 function crearReporteFechas() {
@@ -1349,6 +1352,7 @@ function llenarTablaReporteFechas(respuesta) {
     }
     myTable += "</table>";
     $("#tabla").html(myTable);
+    $("#tabla").show();
 
 }
 
@@ -1380,4 +1384,5 @@ function llenarTablaReporteClientes(respuesta) {
     }
     myTable += "</table>";
     $("#tabla").html(myTable);
+    $("#tabla").show();
 }

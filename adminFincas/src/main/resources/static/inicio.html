@@ -77,8 +77,8 @@
                 <label>Description: <br>
                     <input type="text" id="descriptionNueva" required></label>
                 <br><br>
-                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevaFinca()">
-                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarFincas()">
+                <input type="submit" name="Guardar" value="Guardar" onclick="nuevaFinca()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarFincas()">
             </fieldset>
         </div>
         <br>
@@ -99,7 +99,7 @@
                 <label>Description: <br>
                     <input type="text" id="descriptionEditar" required></label>
                 <br><br>
-                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarFinca()">
+                <input type="submit" name="Guardar" value="Guardar" onclick="editarFinca()">
                 <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarFincas()">
             </fieldset>
         </div>
@@ -113,8 +113,8 @@
                 <label>Description: <br>
                     <input type="text" id="descriptionNuevaCategoria" required></label>
                 <br><br>
-                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevaCategoria()">
-                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarCategorias()">
+                <input type="submit" name="Guardar" value="Guardar" onclick="nuevaCategoria()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
             </fieldset>
         </div>
         <br>
@@ -129,7 +129,7 @@
                 <label>Description: <br>
                     <input type="text" id="descriptionEditarCategoria" required></label>
                 <br><br>
-                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarCategoria()">
+                <input type="submit" name="Guardar" value="Guardar" onclick="editarCategoria()">
                 <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarCategorias()">
             </fieldset>
         </div>
@@ -148,8 +148,8 @@
                 <label>Password: <br>
                     <input type="password" id="passwordNuevoCliente" required></label> <br>
                 <br><br>
-                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevoCliente()">
-                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarClientes()">
+                <input type="submit" name="Guardar" value="Guardar" onclick="nuevoCliente()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarClientes()">
             </fieldset>
         </div>
         <br>
@@ -184,8 +184,8 @@
                 <label>Finca: <br>
                     <input type="text" id="nuevoFarmMensaje" required></label> <br>
                 <br> <br>
-                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevoMensaje()">
-                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarMensajes()">
+                <input type="submit" name="Guardar" value="Guardar" onclick="nuevoMensaje()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarMensajes()">
             </fieldset>
         </div>
         <br>
@@ -202,7 +202,7 @@
                 <label>Finca: <br>
                     <input type="text" id="editarFarmMensaje" disabled required></label> <br>
                 <br><br>
-                <input type="submit" name="GuardarEditar" value="Guardar" onclick="editarMensaje()">
+                <input type="submit" name="Guardar" value="Guardar" onclick="editarMensaje()">
                 <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarMensajes()">
             </fieldset>
         </div>
@@ -222,8 +222,8 @@
                 <label>Finca: <br>
                     <input type="text" id="reservaFincaNueva" required></label>
                 <br><br>
-                <input type="submit" id="GuardarNueva" value="Guardar" onclick="nuevaReservacion()">
-                <input type="submit" id="CancelarNueva" value="Cancelar" onclick="mostrarReservaciones()">
+                <input type="submit" name="Guardar" value="Guardar" onclick="nuevaReservacion()">
+                <input type="submit" name="Cancelar" value="Cancelar" onclick="mostrarReservaciones()">
             </fieldset>
         </div>
         <br>
@@ -259,8 +259,8 @@
             <div id="reporteFechas">
                 <fieldset>
                     <legend><strong>Reservaciones por fecha</strong></legend>
-                    <label for="datoStartdate"> Fecha de inicio:
-                        <input id="datoStartDate" name="startdate" type="date"></label><br>
+                    <label for="datoStartDate"> Fecha de inicio:
+                        <input id="datoStartDate" type="date"></label><br>
                     <label for="datoDevolutionDate">Fecha de entrega:
                         <input id="datoDevolutionDate" name="devolutionDate" type="date"></label><br>
                     <br>
